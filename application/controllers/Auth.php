@@ -162,6 +162,7 @@ class Auth extends MY_Controller {
 			$this->_render_page('auth/change_password', $this->data);
 		} 
 		// asd
+		// asdaasd
 		else
 		{
 			$identity = $this->session->userdata('identity');
