@@ -55,6 +55,11 @@
  */
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
+if( ! ini_get('date.timezone') )
+{
+    date_default_timezone_set('GMT');
+}
+
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

@@ -16,7 +16,13 @@ class Homepage extends MY_Controller
 
 	public function index()
 	{
-		dump('ini beranda');
+		// 
+		$this->render('home');
+	}
+
+	public function tambah()
+	{
+		dump('ini tambah');
 	}
 
 }

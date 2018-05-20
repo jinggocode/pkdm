@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | -------------------------------------------------------------------------
 | URI ROUTING
 | -------------------------------------------------------------------------
-| This file lets you re-map URI requests to specific controller functions.
+| This file lets you re-map URI requests <t</t>o specific controller functions.
 |
 | Typically there is a one-to-one relationship between a URL string
 | and its corresponding controller class/method. The segments in a
@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'homepage';
+$route['default_controller'] = 'auth/login';
 // $route['homepage'] = 'homepage/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
