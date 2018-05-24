@@ -17,7 +17,7 @@ class Pengampu extends MY_Controller
 		$this->load->model('admin/prodi_model');
 		$this->load->model('admin/makul_model');
 		$this->load->model('admin/dosen_model');
-	}
+	} 
 
 	public function index()
 	{
@@ -80,18 +80,19 @@ class Pengampu extends MY_Controller
 	public function add()
 	{
 		$data['makul'] = $this->makul_model->get_all();
-		$data['kelas'] = $this->kelas_model->get_all();
+		$data['kelas'] = $this->kelas_model->with_prodi()->get_all();
 		$data['dosen'] = $this->dosen_model->get_all();
+		$data['prodi'] = $this->prodi_model->get_all();
 
 		$this->generateCsrf();
 		$this->render('admin/master/pengampu/add', $data);
 	}
 	public function save()
-	{
+	{ 
 		// form validation
 		$this->form_validation->set_rules('id_prodi', 'Program Studi', 'trim|min_length[1]|max_length[2]');
 		$this->form_validation->set_rules('id_makul', 'Mata Kuliah', 'trim|min_length[1]|max_length[3]');
-		$this->form_validation->set_rules('id_dosen', 'Dosen', 'trim|min_length[1]|max_length[2]');
+		$this->form_validation->set_rules('id_dosen', 'Dosen', 'trim|min_length[1]|max_length[4]');
 		$this->form_validation->set_rules('id_kelas', 'Kelas', 'trim|min_length[1]|max_length[2]');
 
 		if ($this->form_validation->run() == FALSE) {
@@ -117,10 +118,12 @@ class Pengampu extends MY_Controller
 	public function edit($id)
 	{
 		$data['data'] = $this->pengampu_model->get($id);
-		$data['makul'] = $this->makul_model->get_all();
-		$data['kelas'] = $this->kelas_model->get_all();
-		$data['dosen'] = $this->dosen_model->get_all();
+		$data['makul'] = $this->makul_model->get($data['data']->id_makul);
+		$data['kelas'] = $this->kelas_model->get($data['data']->id_kelas);
+		$data['dosen'] = $this->dosen_model->get($data['data']->id_dosen);
+		$data['prodi'] = $this->prodi_model->get_all();
 
+		// dump($data['makul']);
 		$this->generateCsrf();
 		$this->render('admin/master/pengampu/edit', $data);
 	}
@@ -162,4 +165,88 @@ class Pengampu extends MY_Controller
 		$this->pengampu_model->delete($id);
 		$this->go('admin/master/pengampu');
 	}
+
+	 
+	public function get($parameter = null)
+	{ 
+		if ($parameter == 'getProdi') {
+			$id_prodi = $_GET['id_prodi']; 
+			$data = $this->kelas_model->where('id_prodi', $id_prodi)->get_all();
+
+			echo '<option value="">== Pilih Kelas ==</option>';
+			foreach ($data as $value) { 
+					echo '<option value="' . $value->id . '">' . $value->nama . '</option>'; 
+			}
+			die();
+		} else if ($parameter == 'getMakul') {
+			$id_prodi = $_GET['id_prodi']; 
+			$data = $this->makul_model->where('id_prodi', $id_prodi)->get_all();
+
+			echo '<option value="">== Pilih Matakuliah ==</option>';
+			foreach ($data as $value) { 
+					echo '<option value="' . $value->id . '">SEMESTER ' . $value->semester . ' - ' . $value->nama . '</option>'; 
+			}
+			die();
+		} else if ($parameter == 'getDosen') {
+			$id_prodi = $_GET['id_prodi']; 
+			$data = $this->dosen_model->where('id_prodi', $id_prodi)->get_all();
+
+			echo '<option value="">== Pilih Dosen ==</option>';
+
+			foreach ($data as $value) { 
+					echo '<option value="' . $value->id . '">' . $value->nama . '</option>'; 
+			}
+			die();
+		}
+	}
+
+	 
+	public function get_row($parameter = null)
+	{ 
+		if ($parameter == 'getProdi') {
+			$id_kelas = $_GET['id_kelas']; 
+			$id_prodi = $_GET['id_prodi']; 
+			$data = $this->kelas_model->where('id_prodi', $id_prodi)->get_all();
+
+			echo '<option value="">== Pilih Kelas ==</option>';
+			foreach ($data as $value) { 
+				if ($id_kelas == $value->id) {
+					echo '<option selected value="' . $value->id . '">' . $value->nama . '</option>';  
+				} else {
+					echo '<option value="' . $value->id . '">' . $value->nama . '</option>';   
+				}
+			}
+			die();
+		} else if ($parameter == 'getMakul') {
+			$id_prodi = $_GET['id_prodi']; 
+			$id_makul = $_GET['id_makul']; 
+			$data = $this->makul_model->where('id_prodi', $id_prodi)->get_all();
+
+			echo '<option value="">== Pilih Matakuliah ==</option>';
+			foreach ($data as $value) { 
+				if ($id_makul == $value->id) {
+					echo '<option selected value="' . $value->id . '">SEMESTER ' . $value->semester . ' - ' . $value->nama . '</option>'; 
+				} else { 
+					echo '<option value="' . $value->id . '">SEMESTER ' . $value->semester . ' - ' . $value->nama . '</option>'; 
+				}
+			}
+			die();
+		} else if ($parameter == 'getDosen') {
+			$id_prodi = $_GET['id_prodi']; 
+			$id_dosen = $_GET['id_dosen']; 
+			$data = $this->dosen_model->where('id_prodi', $id_prodi)->get_all();
+
+			echo '<option value="">== Pilih Dosen ==</option>';
+
+			foreach ($data as $value) { 
+				if ($id_dosen == $value->id) {
+					echo '<option selected value="' . $value->id . '">' . $value->nama . '</option>';  
+				} else {
+					echo '<option value="' . $value->id . '">' . $value->nama . '</option>';   
+				}
+			}
+			die();
+		}
+	}
+
 }
