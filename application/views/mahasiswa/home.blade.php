@@ -4,6 +4,14 @@
 
 @section('content')
 
+@if ($user->status_password == '0')
+<div class="callout callout-danger">
+  <h4>Segera lakukan perubahan password kamu!</h4>
+
+  <a style="text-decoration: none;" href="{{site_url('mahasiswa/profil/ubah_password')}}" class="btn btn-primary">Ubah Password</a> 
+</div>
+@endif
+
 @if ($cek_isi == 0)
   <div class="callout callout-warning">
     <h4>Selamat Datang <b>{{$user->first_name}}</b></h4>
@@ -39,7 +47,7 @@
             <?php $kuesioner_isi = $this->kuesioner_isi_model->where('id_pengampu', $row->id_pengampu)->where('id_mahasiswa', $id_mahasiswa)->count_rows();?>
 
             <tr>
-              <td>{{($row->jenis_makul == '0')?'TEORI':'PRAKTEK'}} {{$row->nama_makul}} - {{$row->nama_dosen}}</td>
+              <td>{{($row->jenis_makul == '0')?'TEORI':'PRAKIKUM'}} {{$row->nama_makul}} - {{$row->nama_dosen}}</td>
               <td>
                 @if ($kuesioner_isi == '0')
                   <a href="{{site_url('mahasiswa/kuesioner/isi/'.$row->id_pengampu)}}" class="btn btn-info"><i class="fa fa-send"></i> Isi</a>

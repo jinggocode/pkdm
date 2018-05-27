@@ -18,7 +18,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="{{($sub_page == 'index')?'active':''}}">
+            <li class="{{($sub_page == 'pertanyaan')?'active':''}}">
               <a href="{{site_url('admin/kuesioner/pertanyaan')}}"><i class="fa fa-circle-o"></i> Pertanyaan</a>
             </li>
             <li class="{{($sub_page == 'kategori')?'active':''}}">

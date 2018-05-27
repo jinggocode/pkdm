@@ -10,6 +10,7 @@ class Pengampu_model extends MY_Model
 		$this->primary_key = 'id';
 		$this->protected = array('id');
 
+		$this->has_one['prodi'] = array('Prodi_model', 'id', 'id_prodi');
 		$this->has_one['makul'] = array('Makul_model', 'id', 'id_makul');
 		$this->has_one['kelas'] = array('Kelas_model', 'id', 'id_kelas');
 		$this->has_one['dosen'] = array('Dosen_model', 'id', 'id_dosen');
@@ -17,12 +18,13 @@ class Pengampu_model extends MY_Model
 		parent::__construct();
 	}
 
-	public function getData($id_kelas, $semester)
+	public function getData($id_kelas, $semester, $id_prodi)
 	{
 		$this->db->select('pengampu_makul.id as id_pengampu, matakuliah.nama, dosen.nama as nama_dosen, dosen.id as id_dosen, matakuliah.nama as nama_makul, matakuliah.jenis as jenis_makul');
 		$this->db->from('pengampu_makul');
 		$this->db->join('matakuliah', 'matakuliah.id = pengampu_makul.id_makul');
 		$this->db->join('dosen', 'dosen.id = pengampu_makul.id_dosen');
+		$this->db->where('matakuliah.id_prodi', $id_prodi);
 		$this->db->where('id_kelas', $id_kelas);
 		$this->db->where('matakuliah.semester', $semester);
 		$query = $this->db->get();

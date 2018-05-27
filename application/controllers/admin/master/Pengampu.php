@@ -46,7 +46,8 @@ class Pengampu extends MY_Controller
 		$data = $this->pengampu_model
 				->with_dosen()
 				->with_makul()
-				->with_kelas(array('with'=>array('relation'=>'prodi','fields'=>'nama')))
+				->with_prodi()
+				->with_kelas()
 				->limit($config['per_page'],$offset=$start)
 				->get_all();
 		$config['total_rows'] = $this->pengampu_model
@@ -80,7 +81,7 @@ class Pengampu extends MY_Controller
 	public function add()
 	{
 		$data['makul'] = $this->makul_model->get_all();
-		$data['kelas'] = $this->kelas_model->with_prodi()->get_all();
+		$data['kelas'] = $this->kelas_model->get_all();
 		$data['dosen'] = $this->dosen_model->get_all();
 		$data['prodi'] = $this->prodi_model->get_all();
 
@@ -169,9 +170,9 @@ class Pengampu extends MY_Controller
 	 
 	public function get($parameter = null)
 	{ 
-		if ($parameter == 'getProdi') {
+		if ($parameter == 'getKelas') {
 			$id_prodi = $_GET['id_prodi']; 
-			$data = $this->kelas_model->where('id_prodi', $id_prodi)->get_all();
+			$data = $this->kelas_model->get_all();
 
 			echo '<option value="">== Pilih Kelas ==</option>';
 			foreach ($data as $value) { 
@@ -180,11 +181,12 @@ class Pengampu extends MY_Controller
 			die();
 		} else if ($parameter == 'getMakul') {
 			$id_prodi = $_GET['id_prodi']; 
-			$data = $this->makul_model->where('id_prodi', $id_prodi)->get_all();
+			$semester = $_GET['semester']; 
+			$data = $this->makul_model->where('id_prodi', $id_prodi)->where('semester', $semester)->get_all();
 
 			echo '<option value="">== Pilih Matakuliah ==</option>';
 			foreach ($data as $value) { 
-					echo '<option value="' . $value->id . '">SEMESTER ' . $value->semester . ' - ' . $value->nama . '</option>'; 
+					echo '<option value="' . $value->id . '">SEMESTER ' . $value->semester . ' -  ' . ($value->jenis == 0?'TEORI':'PRAKTIKUM') . ' - ' . $value->nama . '</option>'; 
 			}
 			die();
 		} else if ($parameter == 'getDosen') {

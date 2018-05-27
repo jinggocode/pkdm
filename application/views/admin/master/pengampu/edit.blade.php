@@ -2,6 +2,12 @@
 
 @section('title')Data Pengampu Mata Kuliah@endsection
 
+
+@section('style') 
+<!-- Select2 -->
+<link rel="stylesheet" href="{{base_url()}}assets/admin/bower_components/select2/dist/css/select2.min.css">
+@endsection
+
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -33,6 +39,7 @@
       </div>
       <form class="form-horizontal" action="{{site_url('admin/master/pengampu/update')}}" method="post" enctype="multipart/form-data">
       {{$csrf}} 
+      {{form_hidden('id', $data->id)}} 
         <div class="form-group">
           <label for="id_prodi" class="col-sm-2 control-label">Prodi</label>
           <div class="col-sm-4">
@@ -55,7 +62,7 @@
         <div class="form-group">
           <label for="id_makul" class="col-sm-2 control-label">Mata Kuliah</label>
           <div class="col-sm-4">
-            <select name="id_makul" id="id_makul" class="form-control">
+            <select name="id_makul" id="id_makul" class="form-control select2">
 
             </select>
           </div>
@@ -63,7 +70,7 @@
         <div class="form-group">
           <label for="id_dosen" class="col-sm-2 control-label">Dosen</label>
           <div class="col-sm-4">
-            <select name="id_dosen" id="id_dosen" class="form-control">
+            <select name="id_dosen" id="id_dosen" class="form-control select2">
               
             </select>
           </div>
@@ -82,9 +89,7 @@
 <!-- /.content -->
 @endsection
 
-@section('script') 
-<!-- Select2 -->
-<script src="https://adminlte.io/themes/AdminLTE/bower_components/select2/dist/js/select2.full.min.js"></script>
+@section('script')  
 <!-- Page script -->
 <script>
 $(function () {

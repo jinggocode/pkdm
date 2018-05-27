@@ -59,8 +59,8 @@
                   @foreach($data as $row)
                   <tr>
                     <td>{{$start++}}.</td>
-                    <td>SEMESTER {{$row->makul->semester}} - {{$row->makul->nama}}</td>
-                    <td>{{$row->kelas->prodi->nama}} - {{$row->kelas->nama}}</td>
+                    <td>SEMESTER {{$row->makul->semester}} - {{($row->makul->jenis == 0?'TEORI':'PRAKTIKUM')}} {{$row->makul->nama}}</td>
+                    <td>{{$row->prodi->nama}} - {{$row->kelas->nama}}</td>
                     <td>{{$row->dosen->nama}}</td>
                     <td>
                       <a href="{{site_url('admin/master/pengampu/edit/'.$row->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a>

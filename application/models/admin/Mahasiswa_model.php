@@ -10,7 +10,8 @@ class Mahasiswa_model extends MY_Model
         $this->primary_key = 'id';
         $this->protected = array('id');
 
-				$this->has_one['kelas'] = array('Kelas_model', 'id', 'id_kelas');
+		$this->has_one['prodi'] = array('Prodi_model', 'id', 'id_prodi');
+		$this->has_one['kelas'] = array('Kelas_model', 'id', 'id_kelas');
         $this->has_one['angkatan'] = array('Angkatan_model', 'id', 'id_angkatan');  
 
 		parent::__construct();

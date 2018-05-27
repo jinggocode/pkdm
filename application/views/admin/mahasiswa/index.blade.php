@@ -45,9 +45,11 @@
           <table class="table table-hover table-striped">
               <thead>
                 <th style="width: 3%">No.</th> 
-                <th style="width: 40%">Nama</th>
+                <th style="width: 30%">Nama</th>
                 <th>NIM</th> 
+                <th>Program Studi</th> 
                 <th>Kelas</th> 
+                <th>Angkatan</th> 
                 <th>Aksi</th>
               </thead> 
               <?php if(empty($data)): ?>
@@ -61,7 +63,9 @@
                     <td>{{$start++}}.</td>  
                     <td>{{$row->nama}}</td> 
                     <td>{{$row->nim}}</td> 
-                    <td>{{$row->kelas->nama}} - {{$row->kelas->prodi->nama}}</td> 
+                    <td>{{$row->prodi->nama}}</td> 
+                    <td>{{$row->kelas->nama}}</td> 
+                    <td>{{$row->angkatan->nama}}</td> 
                     <td>
                       <a href="{{site_url('admin/mahasiswa/view/'.$row->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Lihat</a>
                       <a href="{{site_url('admin/mahasiswa/edit/'.$row->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a>

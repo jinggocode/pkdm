@@ -35,6 +35,7 @@
       <form class="form-horizontal" action="{{site_url('admin/dosen/update')}}" method="post" enctype="multipart/form-data">
       {{$csrf}}
       {{form_hidden('id', $data->id);}}
+      {{form_hidden('id_user', $data->id_user);}}
 
         <div class="form-group">
           <label for="nama" class="col-sm-2 control-label">Nama</label>

@@ -55,12 +55,12 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="id_angkatan" class="col-sm-2 control-label">Angkatan</label>
+          <label for="id_prodi" class="col-sm-2 control-label">Program Studi</label>
           <div class="col-sm-4">
-            <select name="id_angkatan" id="id_angkatan" class="form-control select2">
-              <option value="">- Pilih Angkatan -</option>
-              @foreach ($angkatan as $row)
-                <option {{($data->id_angkatan == $row->id)?'selected':''}} value="{{$row->id}}">{{$row->nama}} </option>
+            <select name="id_prodi" id="id_prodi" class="form-control">
+              <option value="">- Pilih Program Studi -</option>
+              @foreach ($prodi as $value)
+                <option {{($data->id_prodi == $value->id)?'selected':''}} value="{{$value->id}}">{{$value->nama}}</option>
               @endforeach
             </select>
           </div>
@@ -68,13 +68,25 @@
         <div class="form-group">
           <label for="id_kelas" class="col-sm-2 control-label">Kelas</label>
           <div class="col-sm-4">
-            <select name="id_kelas" id="id_kelas" class="form-control select2">
+            <select name="id_kelas" id="id_kelas" class="form-control">
+              <option value="">- Pilih Kelas -</option>
               @foreach ($kelas as $value)
-                <option {{($data->id_kelas == $value->id)?'selected':''}} value="{{$value->id}}">{{$value->prodi->nama}} - {{$value->nama}}</option>
+                <option {{($data->id_kelas == $value->id)?'selected':''}} value="{{$value->id}}">{{$value->nama}}</option>
               @endforeach
             </select>
           </div>
         </div>
+        <div class="form-group">
+          <label for="id_angkatan" class="col-sm-2 control-label">Angkatan</label>
+          <div class="col-sm-4">
+            <select name="id_angkatan" id="id_angkatan" class="form-control">
+              <option value="">- Pilih Angkatan -</option>
+              @foreach ($angkatan as $row)
+                <option {{($data->id_angkatan == $row->id)?'selected':''}} value="{{$row->id}}">{{$row->nama}} </option>
+              @endforeach
+            </select>
+          </div>
+        </div> 
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-primary">Simpan</button>

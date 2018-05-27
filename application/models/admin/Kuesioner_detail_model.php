@@ -12,4 +12,13 @@ class Kuesioner_detail_model extends MY_Model
 
 		parent::__construct();
 	}
+
+	public function getJumlahNilai($id_kuesioner_is)
+	{
+		$this->db->select_sum('nilai');
+		$this->db->where('id_kuesioner_isi', $id_kuesioner_is); 
+		$query = $this->db->get('kuesioner_isi_detail');
+
+		return $query->row();
+	}
 }
