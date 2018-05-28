@@ -38,18 +38,7 @@
           <div class="col-sm-6">
             <input type="text" name="nama" class="form-control" value="{{set_value('nama')}}" id="nama">
           </div>
-        </div>   
-        <div class="form-group">
-          <label for="no_telp" class="col-sm-2 control-label">Program Studi</label>
-          <div class="col-sm-4">
-            <select name="id_prodi" id="id_prodi" class="form-control">
-              <option value="">--Pilih Program Studi--</option>
-              @foreach ($prodi as $row)
-                <option {{($row->id == set_value('id_prodi')?'selected':'')}} value="{{$row->id}}">{{$row->nama}}</option>
-              @endforeach
-            </select>
-          </div>
-        </div>
+        </div>    
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-primary">Simpan</button>

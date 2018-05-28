@@ -45,8 +45,7 @@
           <table class="table table-hover table-striped">
               <thead>
                 <th style="width: 3%">No.</th> 
-                <th>Nama</th>  
-                <th>Program Studi</th>  
+                <th>Nama</th>   
                 <th>Aksi</th>
               </thead> 
               <?php if(empty($data)): ?>
@@ -58,8 +57,7 @@
                   @foreach($data as $row)
                   <tr>
                     <td>{{$start++}}.</td> 
-                    <td>{{$row->nama}}</td> 
-                    <td>{{$row->prodi->nama}}</td> 
+                    <td>{{$row->nama}}</td>  
                     <td> 
                       <a href="{{site_url('admin/master/kelas/edit/'.$row->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a>
                       <a href="{{site_url('admin/master/kelas/delete/'.$row->id)}}" onclick="return confirm('apakah anda yakin?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</a>
