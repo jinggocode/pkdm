@@ -29,43 +29,55 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition login-page">
-<div class="login-box">
+<div class="login-box" style="width: 453px; margin: 3% auto;">
   <div class="login-logo">
-    <a><b><span>PKDM</span> <br><span style="font-size: 25px">Politeknik Negeri Banyuwangi</span></b></a>
+    <a>
+      <b> 
+        <center><img src="{{base_url('assets/image/logo.png')}}" class="img-responsive" width="150" alt=""></center>
+        <span style="font-size: 30px">Aplikasi Penilaian Kinerja Dosen</span><br> 
+      </b>
+    </a>
   </div> 
 
-  <!-- /.login-logo -->
-  <div class="login-box-body">
-    <?php $message = $this->session->flashdata('message'); 
-    if (isset($message)): ?> 
-    <div class="alert alert-danger alert-dismissible">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <h4><i class="icon fa fa-ban"></i> Peringatan!</h4>
-      <?php echo $message; ?>
-    </div>
-    <?php endif ?> 
-
-    <form method="post" action="{{site_url('auth/login')}}">
-      <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" />
-
-      <div class="form-group has-feedback">
-        <?php echo form_input($identity);?> 
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <?php echo form_input($password);?> 
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row">  
-        <!-- /.col -->
-        <div class="col-xs-12">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+  <div style="width: 360px; margin: 7% auto;">
+      <!-- /.login-logo -->
+    <div class="login-box-body">
+        <?php $message = $this->session->flashdata('message'); 
+        if (isset($message)): ?> 
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-ban"></i> Peringatan!</h4>
+          <?php echo $message; ?>
         </div>
-        <!-- /.col -->
+        <?php endif ?> 
+    
+        <form method="post" action="{{site_url('auth/login')}}">
+          <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" />
+    
+          <div class="form-group has-feedback">
+            <?php echo form_input($identity);?> 
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <?php echo form_input($password);?> 
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="row">  
+            <!-- /.col -->
+            <div class="col-xs-12">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>  
       </div>
-    </form>  
-  </div>
-  <!-- /.login-box-body -->
+      <!-- /.login-box-body -->
+      <div class="alert alert-info" role="alert">
+        <h4>Perhatian</h4>
+        <p>Username <b>Mahasiswa</b> adalah NIM, dengan password "default" tanpa petik</p>
+        <p>Segera lakukan perubahan password untuk menjaga keamanan data</p>
+      </div>
+    </div>
 </div>
 <!-- /.login-box -->
 

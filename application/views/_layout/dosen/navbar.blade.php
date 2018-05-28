@@ -9,25 +9,11 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
-      <ul class="nav navbar-nav">
-        <!-- <li class="active"><a href="#">Beranda <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Data Kuisioner</a></li>
-         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li> -->
-      </ul>
+       
       <div class="navbar-custom-menu">
 
         <?php $user = $this->ion_auth->user()->row(); ?>
+
         <ul class="nav navbar-nav">
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
@@ -50,7 +36,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="{{site_url('mahasiswa/profil/ubah_password')}}" class="btn btn-default btn-flat">Ubah Password</a>
+                  <a href="{{site_url('dosen/profil/ubah_password')}}" class="btn btn-default btn-flat">Ubah Password</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{site_url('auth/logout')}}" class="btn btn-default btn-flat">Keluar</a>

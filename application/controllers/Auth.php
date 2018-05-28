@@ -82,7 +82,7 @@ class Auth extends MY_Controller {
 				if ($user->group_id === "1") {
 					redirect('admin/homepage', 'refresh');
 				} else if ($user->group_id === "2") {
-					redirect('petugas', 'refresh');
+					redirect('dosen/homepage', 'refresh');
 				} else if ($user->group_id === "3") {
 					redirect('mahasiswa/homepage', 'refresh');
 				} else {

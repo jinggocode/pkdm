@@ -1,11 +1,11 @@
-@layout('_layout/mahasiswa/index')
+@layout('_layout/dosen/index')
 
 @section('title')Isi Kuisioner@endsection
 
 @section('content')
 <div class="box box-default">
   <div class="box-header with-border" align="center">
-    <a href="{{site_url('mahasiswa/homepage')}}" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a>
+    <a href="{{site_url('dosen/homepage')}}" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a>
   </div>
  
   <div class="box-body">
@@ -24,7 +24,7 @@
     </div>
 
     <div style="padding-bottom: 2px">
-      <form action="{{site_url('mahasiswa/profil/update')}}" method="post">
+      <form action="{{site_url('dosen/profil/update')}}" method="post">
         {{$csrf}}
         {{form_hidden('id', $user->id)}}
 

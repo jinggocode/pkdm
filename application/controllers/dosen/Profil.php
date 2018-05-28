@@ -10,89 +10,43 @@ class Profil extends MY_Controller
 	{
 		parent::__construct();
 		$this->_accessable = true;
-		$this->load->helper(array('dump'));
-		$this->root_view = "admin/";
-		$this->load->model('admin/User_model');
-		$this->load->model(array('user_model'));
+		$this->load->helper(array('dump')); 
+		$this->load->model('admin/user_model'); 
 	}
 
 	public function ubah_password()
 	{
-		$this->render('mahasiswa/profil/ubah_password');
-	}
-
-	public function add()
-	{
-		$this->generateCsrf();
-		$this->render('admin/user/add');
-	}
-	public function save()
-	{
-		// form validation
-		$this->form_validation->set_rules('nama', 'Nama', 'trim|required|min_length[3]|max_length[25]');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[3]|max_length[25]');
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[3]|max_length[25]');
-		$this->form_validation->set_rules('no_telp', 'Nomor Telp', 'trim|required|min_length[3]|max_length[25]');
-		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required|min_length[3]|max_length[25]');
-		// end form validation
-
-		if ($this->form_validation->run() == false) {
-
-			$this->generateCsrf();
-			$this->render('admin/user/add');
-		} else {
-			$data = $this->input->post();
-			$insert = $this->user_model->insert($data);
-			if ($insert == false) {
-				echo "ada kesalahan";
-			} else {
-				$this->go('admin/user'); //redirect ke user
-			}
-		}
-
-	}
-
-	public function edit($id)
-	{
-		$data['data'] = $this->user_model->get($id);
+		$data['user'] = $this->ion_auth->user()->row();
 
 		$this->generateCsrf();
-		$this->render('admin/user/edit', $data);
-	}
+		$this->render('dosen/profil/ubah_password', $data);
+	} 
 	public function update()
 	{
 		// form validation
-		$this->form_validation->set_rules('nama', 'Nama', 'trim|required|min_length[3]|max_length[25]');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[3]|max_length[25]');
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[3]|max_length[25]');
-		$this->form_validation->set_rules('no_telp', 'Nomor Telp', 'trim|required|min_length[3]|max_length[25]');
-		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required|min_length[3]|max_length[25]');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|max_length[8]');
+		$this->form_validation->set_rules('reenter_password', 'Ulangi Password', 'trim|required|max_length[8]|matches[password]'); 
 		// end form validation
 
 		if ($this->form_validation->run() == false) {
-			$data['data'] = $this->input->post();
+			$data['user'] = $this->ion_auth->user()->row();
 
 			$this->generateCsrf();
-			$this->render('admin/user/add', $data);
+			$this->render('dosen/profil/ubah_password', $data);
 		} else {
 			$data = $this->input->post();
-			$insert = $this->user_model->update($data, $this->input->post('id'));
-			if ($insert == false) {
+			$data['password'] 	= password_hash($data['password'], PASSWORD_BCRYPT);
+			$data['status_password'] 	= '1';
+
+			$update = $this->user_model->update($data, $this->input->post('id'));
+ 
+			if ($update == false) {
 				echo "ada kesalahan";
 			} else {
-				$this->go('admin/user'); //redirect ke user
+				$this->message('Password Berhasil di Ubah!', 'success');
+				$this->go('dosen/homepage'); //redirect ke user
 			}
 		}
 
-	}
-
-	public function delete($id = '')
-	{
-		if (!isset($id)) {
-			show_404();
-		}
-
-		$this->user_model->delete($id);
-		$this->go('admin/user');
-	}
+	}  
 }

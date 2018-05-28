@@ -7,9 +7,9 @@ if (!$this->ion_auth->logged_in())
 
 $user = $this->ion_auth->user()->row();
 
-if ($user->group_id == 2){
+if ($user->group_id == 3){
     redirect('auth/logout', 'refresh');
-} else if ($user->group_id == 3){
+} else if ($user->group_id == 1){
     redirect('auth/logout', 'refresh');
 }
 ?>
@@ -18,7 +18,7 @@ if ($user->group_id == 2){
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>@yield('title') | Jinggofarm Store</title>
+  <title>@yield('title') | Aplikasi Kuisioner</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -32,9 +32,6 @@ if ($user->group_id == 2){
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{base_url()}}assets/admin/dist/css/skins/skin-blue.min.css">
-
-  <!-- CSS Tambahan -->
-  @yield('style')
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -59,20 +56,13 @@ if ($user->group_id == 2){
     }
   </style>
 </head>
-<body class="hold-transition skin-blue fixed sidebar-mini">
+<body class="hold-transition skin-blue layout-top-nav">
 <!-- Site wrapper -->
 <div class="wrapper">
 
-<!-- ini header admin-->
-@include('_layout/admin/header')
-<!-- end header admin -->
-
-  <!-- =============================================== -->
-
-  <!-- Left side column. contains the sidebar -->
-  @include('_layout/admin/sidebar')
-
-  <!-- =============================================== -->
+  <header class="main-header">
+    @include('_layout/dosen/navbar')
+  </header>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -90,9 +80,27 @@ if ($user->group_id == 2){
         </div>
     @endif
 
-    @yield('content')
+    <div class="container">
+
+      <!-- Main content -->
+      <section class="content">
+        @yield('content')
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.container -->
   </div>
   <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="container">
+      <div class="pull-right hidden-xs">
+        <b>TI Poliwangi</b>
+      </div>
+      <strong>Copyright &copy; 2018 <a href="https://adminlte.io">Savicri Vidirila</a>.</strong>
+    </div>
+    <!-- /.container -->
+  </footer>
 
 </div>
 <!-- ./wrapper -->
@@ -101,8 +109,6 @@ if ($user->group_id == 2){
 <script src="{{base_url()}}assets/admin/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{base_url()}}assets/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Select2 -->
-<script src="{{base_url('assets/admin/')}}bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- SlimScroll -->
 <script src="{{base_url()}}assets/admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
