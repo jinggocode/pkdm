@@ -79,6 +79,12 @@ class Statistik extends MY_Controller
 			->where('klasifikasi', '3')
 			->count_rows(); 
 
+		$data['kategori_pertanyaan'] = $this->db->query('select id_kuesioner, kuesioner_kategori.id, kuesioner_kategori.nama, kuesioner.isi, avg(nilai) from kuesioner_isi_detail
+		join kuesioner ON kuesioner.id = kuesioner_isi_detail.id_kuesioner 
+		join kuesioner_kategori ON kuesioner.id_kategori = kuesioner_kategori.id
+		where (id_pengampu = '.$id_pengampu.' and id_periode = '.$id_periode.')
+		group by kuesioner_kategori.nama')->result();
+		
 		$this->render('dosen/statistik/grafik', $data);
 	}
 

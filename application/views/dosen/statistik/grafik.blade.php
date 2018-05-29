@@ -22,7 +22,62 @@
   </div> 
 
   <div id="bar_chart" style="padding: 40px"></div>
+
+  <div style="padding-left: 50px">
+      <p>
+        <b>Keterangan</b> <br>
+        <ul>
+          <li>Klasifikasi ditentukan oleh jumlah total nilai</li> 
+          <li>Nilai Teori : 12 - 12 = cukup, </li> 
+        </ul>
+      </p>
+  </div>
   
+  <div class="box-body" style="font-size: 20px">
+    <table class="table table-striped table-hover">
+
+      @foreach ($kategori_pertanyaan as $value)
+        <?php 
+        $id_pengampu = $this->uri->segment(4);
+        $id_periode = $this->uri->segment(5);
+        
+        $pertanyaan = $this->db->query('select id_kuesioner, kuesioner_kategori.id, kuesioner_kategori.nama, kuesioner.isi, avg(nilai) as nilai from kuesioner_isi_detail
+        join kuesioner ON kuesioner.id = kuesioner_isi_detail.id_kuesioner 
+        join kuesioner_kategori ON kuesioner.id_kategori = kuesioner_kategori.id
+        where (id_pengampu = '.$id_pengampu.' and id_periode = '.$id_periode.' and kuesioner_kategori.id = '.$value->id.')
+        group by id_kuesioner')->result();
+        ?>
+
+        <tr>
+          <td colspan="2"><strong>{{$value->nama}}</strong></td>
+        </tr>
+        <tr>
+          <td><i>Pertanyaan</i></td>
+          <td><i>Rata - rata Nilai</i></td>
+        </tr> 
+        @foreach ($pertanyaan as $row) 
+          <tr>
+            <td>{{$row->isi}}</td>
+            <td>{{ceil($row->nilai)}}</td>
+          </tr> 
+        @endforeach 
+      @endforeach
+
+    </table>
+
+    <div style="padding-top: 10px">
+        <p>
+          <b>Keterangan</b> <br>
+          <ul>
+            <li>Nilai 1 = Kurang</li>
+            <li>Nilai 2 = Cukup</li>
+            <li>Nilai 3 = Baik</li>
+            <li>Nilai 4 = Sangat Baik</li>
+          </ul>
+        </p>
+    </div>
+
+  </div>
   <!-- /.box-body -->
 </div>
 <!-- /.box -->
@@ -55,7 +110,7 @@
               
           var options = {
                   chart: {
-                    title: 'Grafik Klasifikasi Nilai',
+                    title: 'Grafik Klasifikasi Nilai Keseluruhan',
                     subtitle: 'Grafik Klasifikasi Nilai'
                 },
                 width: 800,
