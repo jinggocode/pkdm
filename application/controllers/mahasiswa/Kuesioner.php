@@ -37,8 +37,8 @@ class Kuesioner extends MY_Controller
 
 		$data['kategori'] = $this->kuesioner_model
 				->where('jenis', $data['data']->makul->jenis)
-				->fields('id_kategori')
-				->with_kategori()
+				->fields('id_kategori, jenis')
+				->with_kategori('order_by:nama,asc')
 				->group_by('id_kategori')
 				->order_by('id_kategori', 'ASC')
 				->get_all();

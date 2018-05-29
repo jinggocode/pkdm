@@ -43,7 +43,12 @@
         </div>
         <!-- /.box-header -->
 
-        <?php $pertanyaan = $this->kuesioner_model->where('id_kategori', $value->id_kategori)->get_all(); ?>
+        <?php 
+        $pertanyaan = $this->kuesioner_model
+            ->where('jenis', $value->jenis)
+            ->where('id_kategori', $value->id_kategori)
+            ->get_all(); 
+        ?>
 
         @foreach ($pertanyaan as $row)
         <div class="box-body">
