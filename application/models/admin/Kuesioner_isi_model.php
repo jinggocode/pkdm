@@ -13,5 +13,5 @@ class Kuesioner_isi_model extends MY_Model
 		$this->has_one['periode'] = array('Periode_model', 'id', 'id_periode');
 		$this->has_one['pengampu'] = array('Pengampu_model', 'id', 'id_pengampu');
 		parent::__construct();
-	}
+	} 
 }

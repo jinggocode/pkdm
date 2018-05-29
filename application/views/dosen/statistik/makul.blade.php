@@ -37,7 +37,7 @@
             <tr>
               <td>{{($row->pengampu->makul->jenis == '0')?'TEORI':'PRAKIKUM'}} {{$row->pengampu->makul->nama}}</td>
               <td> 
-                  <a href="{{site_url('dosen/statistik/grafik/'.$row->id_pengampu)}}" class="btn btn-info"><i class="fa fa-send"></i> Lihat</a>
+                  <a href="{{site_url('dosen/statistik/grafik/'.$row->id_pengampu.'/'.$row->id_periode)}}" class="btn btn-info"><i class="fa fa-send"></i> Lihat</a>
                </td>
             </tr>
           @endforeach

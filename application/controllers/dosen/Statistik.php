@@ -19,33 +19,65 @@ class Statistik extends MY_Controller
 		$this->load->model('admin/kelas_model');
 		$this->load->model('admin/mahasiswa_model');
 		$this->load->model('admin/periode_model');
-		$this->load->model('admin/angkatan_model'); 
+		$this->load->model('admin/angkatan_model');
 		$this->load->model('admin/kuesioner_isi_model');
-	} 
+	}
 
 	public function makul($id_periode)
 	{
 		$data['user'] = $this->ion_auth->user()->row();
 		$dosen = $this->dosen_model->where('id_user', $data['user']->id)->get();
+
 		$data['makul'] = $this->kuesioner_isi_model
-			->fields('id')
 			->with_periode()
-			->with_pengampu(array('with'=>array('relation'=>'makul')))
-			->where('id_periode', $id_periode) 
-			->get_all(); 
+			->with_pengampu(array('with' => array('relation' => 'makul')))
+			->where('id_periode', $id_periode)
+			->where('id_dosen', $dosen->id)
+			->group_by('id_pengampu')
+			->get_all();
 
 		$data['periode'] = $this->kuesioner_isi_model
 			->fields('id')
 			->with_periode()
-			->where('id_periode', $id_periode)  
-			->get(); 
-			
+			->where('id_periode', $id_periode)
+			->get();
+
 		$this->render('dosen/statistik/makul', $data);
 	}
 
-	public function grafik()
+	public function grafik($id_pengampu)
 	{
+		$id_periode = $this->uri->segment(5);
+
 		$data['user'] = $this->ion_auth->user()->row();
+
+		$data['makul'] = $this->kuesioner_isi_model
+			->with_pengampu(array('with' => array('relation' => 'makul')))
+			->where('id_pengampu', $id_pengampu)
+			->where('id_periode', $id_periode) 
+			->group_by('id_periode')
+			->get();
+
+		$data['jumlah_kurang'] = $this->kuesioner_isi_model
+			->where('id_pengampu', $id_pengampu)
+			->where('id_periode', $id_periode)
+			->where('klasifikasi', '0')
+			->count_rows();
+		$data['jumlah_cukup'] = $this->kuesioner_isi_model
+			->where('id_pengampu', $id_pengampu)
+			->where('id_periode', $id_periode)
+			->where('klasifikasi', '1')
+			->count_rows();
+		$data['jumlah_baik'] = $this->kuesioner_isi_model
+			->where('id_pengampu', $id_pengampu)
+			->where('id_periode', $id_periode)
+			->where('klasifikasi', '2')
+			->count_rows();
+		$data['jumlah_sangat_baik'] = $this->kuesioner_isi_model
+			->where('id_pengampu', $id_pengampu)
+			->where('id_periode', $id_periode)
+			->where('klasifikasi', '3')
+			->count_rows(); 
 
 		$this->render('dosen/statistik/grafik', $data);
 	}
