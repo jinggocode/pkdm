@@ -19,10 +19,20 @@
     <p style="font-size: 15px">Kamu belum mengisi semua kuisioner, Silahkan lakukan pengisian dibawah ini</p>
   </div>
 @else
-  <div class="callout callout-success">
-    <h4>Selamat Datang <b>{{$user->first_name}}</b></h4>
+  <div class="callout callout-success">  
+    <p style="font-size: 17px">Kamu telah menyelesaikan pengisian kuesioner, Segera melakukan submit</p>
+ 
+    <form action="{{site_url('mahasiswa/homepage/submit_kuesioner')}}" method="post">
+      {{$csrf}}
+      {{form_hidden('id_mahasiswa', $id_mahasiswa)}}
+      {{form_hidden('id_periode', $id_periode)}} 
 
-    <p style="font-size: 15px">Kamu telah menyelesaikan pengisian kuesioner</p>
+      <div class="form-group">
+        <label for="pernyataan">Salin dan tulis kembali pernyataan "Saya menyatakan bahwa penilaian yang saya isikan dalam form ini adalah benar adanya"</label>
+        <textarea name="pernyataan" id="pernyataan" class="form-control" required placeholder="Salin disini"></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
   </div>
 @endif
 

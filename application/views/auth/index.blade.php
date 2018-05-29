@@ -42,15 +42,25 @@
   <div style="width: 360px; margin: 7% auto;">
       <!-- /.login-logo -->
     <div class="login-box-body">
-        <?php $message = $this->session->flashdata('message'); 
-        if (isset($message)): ?> 
-        <div class="alert alert-danger alert-dismissible">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <h4><i class="icon fa fa-ban"></i> Peringatan!</h4>
-          <?php echo $message; ?>
-        </div>
-        <?php endif ?> 
+        <?php $message = $this->session->flashdata('message');?>  
     
+        <?php if ($message): ?>
+
+        @if ($message[0] == '<')
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> Peringatan!</h4>
+            <?php echo $message; ?>
+          </div>
+        @else
+          <div class="alert alert-<?php echo $message[1]; ?> alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> Informasi</h4>
+            <?php echo $message[0]; ?>
+          </div> 
+        @endif
+        <?php endif ?>
+
         <form method="post" action="{{site_url('auth/login')}}">
           <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" />
     
