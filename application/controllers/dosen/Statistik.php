@@ -30,11 +30,15 @@ class Statistik extends MY_Controller
 
 		$data['makul'] = $this->kuesioner_isi_model
 			->with_periode()
+			->with_mahasiswa(array('with' => array(
+				array('relation'=>'kelas'), 
+				array('relation'=>'angkatan')
+				))) 
 			->with_pengampu(array('with' => array('relation' => 'makul')))
 			->where('id_periode', $id_periode)
 			->where('id_dosen', $dosen->id)
 			->group_by('id_pengampu')
-			->get_all();
+			->get_all(); 
 
 		$data['periode'] = $this->kuesioner_isi_model
 			->fields('id')

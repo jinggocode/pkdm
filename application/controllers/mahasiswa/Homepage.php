@@ -40,8 +40,9 @@ class Homepage extends MY_Controller
 		$cek_status_pengisian = $this->kuesioner_isi_model
 			->where('id_periode', $periode->id)
 			->where('id_mahasiswa', $mahasiswa->id)
-			->count_rows();
-		if ($cek_status_pengisian >= 0) {
+			->where('status_selesai', '1')
+			->count_rows(); 
+		if ($cek_status_pengisian != 0) {
 			$this->go('auth/logout');
 		}
 

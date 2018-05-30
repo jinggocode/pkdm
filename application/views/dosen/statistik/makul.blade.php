@@ -23,6 +23,7 @@
   <div class="box-body" style="font-size: 20px">
     <table class="table table-striped table-hover">
       <thead>
+        <th>Angkatan - Kelas</th>
         <th>Mata Kuliah</th>
         <th>Aksi</th>
       </thead>
@@ -35,6 +36,7 @@
           <?php $no = 1 ?>
           @foreach($makul as $row)  
             <tr>
+              <td>ANGKATAN {{$row->mahasiswa->angkatan->nama}} - KELAS {{$row->mahasiswa->kelas->nama}} </td>
               <td>{{($row->pengampu->makul->jenis == '0')?'TEORI':'PRAKIKUM'}} {{$row->pengampu->makul->nama}}</td>
               <td> 
                   <a href="{{site_url('dosen/statistik/grafik/'.$row->id_pengampu.'/'.$row->id_periode)}}" class="btn btn-info"><i class="fa fa-send"></i> Lihat</a>

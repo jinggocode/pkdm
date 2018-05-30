@@ -1,7 +1,7 @@
 <nav class="navbar navbar-static-top">
   <div class="container">
     <div class="navbar-header">
-      <a href="{{site_url('mahasiswa/homepage')}}" class="navbar-brand"><img style="display:inline-block; margin-top: -7px; max-width:100px; margin-right: 3px" src="{{base_url('assets/image/logo.png')}}" width="34" alt=""> <b>PKDM Poliwangi</b></a>
+      <a href="{{site_url('dosen/homepage')}}" class="navbar-brand"><img style="display:inline-block; margin-top: -7px; max-width:100px; margin-right: 3px" src="{{base_url('assets/image/logo.png')}}" width="34" alt=""> <b>PKDM Poliwangi</b></a>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
         <i class="fa fa-bars"></i>
       </button>
