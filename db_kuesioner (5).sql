@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 29, 2018 at 09:40 AM
+-- Generation Time: May 30, 2018 at 11:53 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 5.6.36
 
@@ -210,6 +210,17 @@ CREATE TABLE `kuesioner_isi` (
   `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `kuesioner_isi`
+--
+
+INSERT INTO `kuesioner_isi` (`id`, `id_dosen`, `id_periode`, `id_mahasiswa`, `id_pengampu`, `total_nilai`, `klasifikasi`, `status_selesai`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(20, 9, 1, 12, 10, 54, '3', '1', '2018-05-30 23:28:10', 23, '2018-05-30 23:28:44', 23),
+(21, 9, 1, 12, 11, 68, '3', '1', '2018-05-30 23:28:38', 23, '2018-05-30 23:28:44', 23),
+(22, 11, 1, 30, 16, 53, '3', '1', '2018-05-30 23:29:14', 53, '2018-05-30 23:30:10', 53),
+(23, 11, 1, 30, 17, 69, '3', '1', '2018-05-30 23:29:40', 53, '2018-05-30 23:30:10', 53),
+(24, 9, 1, 30, 26, 41, '2', '1', '2018-05-30 23:30:05', 53, '2018-05-30 23:30:10', 53);
+
 -- --------------------------------------------------------
 
 --
@@ -228,6 +239,100 @@ CREATE TABLE `kuesioner_isi_detail` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kuesioner_isi_detail`
+--
+
+INSERT INTO `kuesioner_isi_detail` (`id`, `id_kuesioner_isi`, `id_periode`, `id_pengampu`, `id_kuesioner`, `nilai`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(341, 20, 1, 10, 24, 4, '2018-05-30 23:28:10', 23, NULL, NULL),
+(342, 20, 1, 10, 25, 4, '2018-05-30 23:28:10', 23, NULL, NULL),
+(343, 20, 1, 10, 26, 4, '2018-05-30 23:28:10', 23, NULL, NULL),
+(344, 20, 1, 10, 27, 3, '2018-05-30 23:28:11', 23, NULL, NULL),
+(345, 20, 1, 10, 28, 4, '2018-05-30 23:28:11', 23, NULL, NULL),
+(346, 20, 1, 10, 29, 4, '2018-05-30 23:28:11', 23, NULL, NULL),
+(347, 20, 1, 10, 30, 4, '2018-05-30 23:28:11', 23, NULL, NULL),
+(348, 20, 1, 10, 31, 4, '2018-05-30 23:28:11', 23, NULL, NULL),
+(349, 20, 1, 10, 32, 4, '2018-05-30 23:28:11', 23, NULL, NULL),
+(350, 20, 1, 10, 33, 3, '2018-05-30 23:28:11', 23, NULL, NULL),
+(351, 20, 1, 10, 34, 3, '2018-05-30 23:28:11', 23, NULL, NULL),
+(352, 20, 1, 10, 35, 3, '2018-05-30 23:28:11', 23, NULL, NULL),
+(353, 20, 1, 10, 36, 3, '2018-05-30 23:28:11', 23, NULL, NULL),
+(354, 20, 1, 10, 37, 3, '2018-05-30 23:28:11', 23, NULL, NULL),
+(355, 20, 1, 10, 38, 2, '2018-05-30 23:28:11', 23, NULL, NULL),
+(356, 20, 1, 10, 39, 2, '2018-05-30 23:28:11', 23, NULL, NULL),
+(357, 21, 1, 11, 3, 2, '2018-05-30 23:28:38', 23, NULL, NULL),
+(358, 21, 1, 11, 4, 3, '2018-05-30 23:28:38', 23, NULL, NULL),
+(359, 21, 1, 11, 5, 4, '2018-05-30 23:28:38', 23, NULL, NULL),
+(360, 21, 1, 11, 6, 4, '2018-05-30 23:28:38', 23, NULL, NULL),
+(361, 21, 1, 11, 7, 4, '2018-05-30 23:28:39', 23, NULL, NULL),
+(362, 21, 1, 11, 8, 4, '2018-05-30 23:28:39', 23, NULL, NULL),
+(363, 21, 1, 11, 9, 4, '2018-05-30 23:28:39', 23, NULL, NULL),
+(364, 21, 1, 11, 10, 4, '2018-05-30 23:28:39', 23, NULL, NULL),
+(365, 21, 1, 11, 11, 3, '2018-05-30 23:28:39', 23, NULL, NULL),
+(366, 21, 1, 11, 12, 3, '2018-05-30 23:28:39', 23, NULL, NULL),
+(367, 21, 1, 11, 13, 4, '2018-05-30 23:28:39', 23, NULL, NULL),
+(368, 21, 1, 11, 14, 4, '2018-05-30 23:28:39', 23, NULL, NULL),
+(369, 21, 1, 11, 15, 4, '2018-05-30 23:28:39', 23, NULL, NULL),
+(370, 21, 1, 11, 16, 3, '2018-05-30 23:28:39', 23, NULL, NULL),
+(371, 21, 1, 11, 17, 4, '2018-05-30 23:28:39', 23, NULL, NULL),
+(372, 21, 1, 11, 18, 3, '2018-05-30 23:28:39', 23, NULL, NULL),
+(373, 21, 1, 11, 19, 3, '2018-05-30 23:28:39', 23, NULL, NULL),
+(374, 21, 1, 11, 20, 4, '2018-05-30 23:28:39', 23, NULL, NULL),
+(375, 21, 1, 11, 21, 2, '2018-05-30 23:28:39', 23, NULL, NULL),
+(376, 21, 1, 11, 22, 2, '2018-05-30 23:28:39', 23, NULL, NULL),
+(377, 22, 1, 16, 24, 4, '2018-05-30 23:29:14', 53, NULL, NULL),
+(378, 22, 1, 16, 25, 4, '2018-05-30 23:29:14', 53, NULL, NULL),
+(379, 22, 1, 16, 26, 4, '2018-05-30 23:29:14', 53, NULL, NULL),
+(380, 22, 1, 16, 27, 3, '2018-05-30 23:29:14', 53, NULL, NULL),
+(381, 22, 1, 16, 28, 4, '2018-05-30 23:29:14', 53, NULL, NULL),
+(382, 22, 1, 16, 29, 3, '2018-05-30 23:29:14', 53, NULL, NULL),
+(383, 22, 1, 16, 30, 4, '2018-05-30 23:29:14', 53, NULL, NULL),
+(384, 22, 1, 16, 31, 3, '2018-05-30 23:29:15', 53, NULL, NULL),
+(385, 22, 1, 16, 32, 4, '2018-05-30 23:29:15', 53, NULL, NULL),
+(386, 22, 1, 16, 33, 3, '2018-05-30 23:29:15', 53, NULL, NULL),
+(387, 22, 1, 16, 34, 4, '2018-05-30 23:29:15', 53, NULL, NULL),
+(388, 22, 1, 16, 35, 3, '2018-05-30 23:29:15', 53, NULL, NULL),
+(389, 22, 1, 16, 36, 3, '2018-05-30 23:29:15', 53, NULL, NULL),
+(390, 22, 1, 16, 37, 3, '2018-05-30 23:29:15', 53, NULL, NULL),
+(391, 22, 1, 16, 38, 2, '2018-05-30 23:29:15', 53, NULL, NULL),
+(392, 22, 1, 16, 39, 2, '2018-05-30 23:29:15', 53, NULL, NULL),
+(393, 23, 1, 17, 3, 4, '2018-05-30 23:29:40', 53, NULL, NULL),
+(394, 23, 1, 17, 4, 4, '2018-05-30 23:29:40', 53, NULL, NULL),
+(395, 23, 1, 17, 5, 3, '2018-05-30 23:29:41', 53, NULL, NULL),
+(396, 23, 1, 17, 6, 4, '2018-05-30 23:29:41', 53, NULL, NULL),
+(397, 23, 1, 17, 7, 4, '2018-05-30 23:29:41', 53, NULL, NULL),
+(398, 23, 1, 17, 8, 3, '2018-05-30 23:29:41', 53, NULL, NULL),
+(399, 23, 1, 17, 9, 4, '2018-05-30 23:29:41', 53, NULL, NULL),
+(400, 23, 1, 17, 10, 3, '2018-05-30 23:29:41', 53, NULL, NULL),
+(401, 23, 1, 17, 11, 4, '2018-05-30 23:29:41', 53, NULL, NULL),
+(402, 23, 1, 17, 12, 4, '2018-05-30 23:29:41', 53, NULL, NULL),
+(403, 23, 1, 17, 13, 4, '2018-05-30 23:29:41', 53, NULL, NULL),
+(404, 23, 1, 17, 14, 4, '2018-05-30 23:29:41', 53, NULL, NULL),
+(405, 23, 1, 17, 15, 3, '2018-05-30 23:29:41', 53, NULL, NULL),
+(406, 23, 1, 17, 16, 4, '2018-05-30 23:29:41', 53, NULL, NULL),
+(407, 23, 1, 17, 17, 3, '2018-05-30 23:29:41', 53, NULL, NULL),
+(408, 23, 1, 17, 18, 4, '2018-05-30 23:29:41', 53, NULL, NULL),
+(409, 23, 1, 17, 19, 3, '2018-05-30 23:29:41', 53, NULL, NULL),
+(410, 23, 1, 17, 20, 3, '2018-05-30 23:29:41', 53, NULL, NULL),
+(411, 23, 1, 17, 21, 2, '2018-05-30 23:29:41', 53, NULL, NULL),
+(412, 23, 1, 17, 22, 2, '2018-05-30 23:29:41', 53, NULL, NULL),
+(413, 24, 1, 26, 24, 4, '2018-05-30 23:30:05', 53, NULL, NULL),
+(414, 24, 1, 26, 25, 1, '2018-05-30 23:30:06', 53, NULL, NULL),
+(415, 24, 1, 26, 26, 3, '2018-05-30 23:30:06', 53, NULL, NULL),
+(416, 24, 1, 26, 27, 2, '2018-05-30 23:30:06', 53, NULL, NULL),
+(417, 24, 1, 26, 28, 2, '2018-05-30 23:30:06', 53, NULL, NULL),
+(418, 24, 1, 26, 29, 2, '2018-05-30 23:30:06', 53, NULL, NULL),
+(419, 24, 1, 26, 30, 3, '2018-05-30 23:30:06', 53, NULL, NULL),
+(420, 24, 1, 26, 31, 3, '2018-05-30 23:30:06', 53, NULL, NULL),
+(421, 24, 1, 26, 32, 3, '2018-05-30 23:30:06', 53, NULL, NULL),
+(422, 24, 1, 26, 33, 3, '2018-05-30 23:30:06', 53, NULL, NULL),
+(423, 24, 1, 26, 34, 3, '2018-05-30 23:30:06', 53, NULL, NULL),
+(424, 24, 1, 26, 35, 4, '2018-05-30 23:30:06', 53, NULL, NULL),
+(425, 24, 1, 26, 36, 3, '2018-05-30 23:30:06', 53, NULL, NULL),
+(426, 24, 1, 26, 37, 3, '2018-05-30 23:30:06', 53, NULL, NULL),
+(427, 24, 1, 26, 38, 1, '2018-05-30 23:30:06', 53, NULL, NULL),
+(428, 24, 1, 26, 39, 1, '2018-05-30 23:30:06', 53, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -295,19 +400,15 @@ CREATE TABLE `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`id`, `id_user`, `id_prodi`, `id_kelas`, `id_angkatan`, `nim`, `nama`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(9, 20, 1, 3, 3, '361555401013', 'Savicri Vidirila', '2018-05-28 07:01:12', 1, '2018-05-28 23:54:52', 1),
-(10, 21, 1, 3, 3, '361555401015', 'Teguh Faizin', '2018-05-28 07:01:50', 1, '2018-05-28 23:54:58', 1),
-(11, 22, 1, 3, 3, '361555401012', 'Defrimont Era', '2018-05-28 07:02:32', 1, '2018-05-28 23:55:04', 1),
+(9, 20, 1, 3, 1, '361555401013', 'Savicri Vidirila', '2018-05-28 07:01:12', 1, '2018-05-30 15:07:19', 1),
+(10, 21, 1, 3, 1, '361555401015', 'Teguh Faizin', '2018-05-28 07:01:50', 1, '2018-05-30 15:07:25', 1),
+(11, 22, 1, 3, 1, '361555401012', 'Defrimont Era', '2018-05-28 07:02:32', 1, '2018-05-30 15:07:35', 1),
 (12, 23, 1, 3, 1, '361555401033', 'Rahmat Ramadhan Putra', '2018-05-28 07:03:14', 1, '2018-05-28 23:10:51', 1),
-(13, 32, 1, 3, 2, '361755401001', 'YUNYA PRILY ARISTA', '2018-05-28 07:44:03', 1, '2018-05-28 07:55:28', 1),
-(14, 33, 1, 3, 2, '361755401002', 'ROBIT HADIANSYAH', '2018-05-28 07:44:40', 1, NULL, NULL),
-(15, 34, 1, 3, 1, '361655401001', 'Rilo Febrian Erawan Putra', '2018-05-28 07:56:33', 1, NULL, NULL),
-(16, 35, 1, 4, 1, '361655401031', 'Freliyan Dwi Cahyadi', '2018-05-28 07:57:27', 1, '2018-05-29 00:01:04', 1),
-(17, 36, 1, 5, 1, '361655401061', 'Mohamad Maskur Hadi', '2018-05-28 23:58:33', 1, NULL, NULL),
-(18, 37, 1, 6, 1, '361655401090', 'Ratna Dewi Agustini', '2018-05-29 00:02:39', 1, NULL, NULL),
-(19, 38, 1, 7, 1, '361655401119', 'Moh. Nur Asropik', '2018-05-29 00:03:23', 1, NULL, NULL),
-(20, 39, 1, 8, 1, '361655401148', 'Destiyar Tiyananda', '2018-05-29 00:04:47', 1, NULL, NULL),
-(21, 43, 1, 3, 1, '361555401001', 'Edi Siswanto', '2018-05-29 05:36:30', 1, NULL, NULL);
+(26, 49, 1, 3, 1, '361755401011', 'DEDY JONI KURNIAWAN', '2018-05-30 15:22:34', 1, NULL, NULL),
+(27, 50, 1, 3, 1, '361755401012', 'ARYO WHISNU W', '2018-05-30 15:23:01', 1, NULL, NULL),
+(28, 51, 1, 3, 1, '361755401016', 'MIRTA JHOSWANDA', '2018-05-30 15:44:43', 1, NULL, NULL),
+(29, 52, 1, 3, 1, '361755401017', 'DINGA SANGATA', '2018-05-30 15:45:20', 1, NULL, NULL),
+(30, 53, 1, 4, 1, '123', 'Beni', '2018-05-30 23:12:25', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -385,7 +486,8 @@ INSERT INTO `pengampu_makul` (`id`, `id_prodi`, `id_kelas`, `id_makul`, `id_dose
 (22, 1, 7, 16, 14, '2018-05-29 00:15:03', 1, NULL, NULL),
 (23, 1, 7, 17, 14, '2018-05-29 00:15:18', 1, NULL, NULL),
 (24, 1, 8, 6, 5, '2018-05-29 00:15:44', 1, NULL, NULL),
-(25, 1, 7, 7, 5, '2018-05-29 00:16:03', 1, NULL, NULL);
+(25, 1, 7, 7, 5, '2018-05-29 00:16:03', 1, NULL, NULL),
+(26, 1, 4, 4, 9, '2018-05-30 23:13:23', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -473,37 +575,34 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `group_id`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `status_password`, `first_name`, `last_name`, `company`, `phone`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(1, '192.168.137.1', 1, 'admin', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', NULL, NULL, NULL, NULL, 0, 1527579470, 1, '1', 'Admin', 'Istrator', 'Admin', NULL, NULL, NULL, '2018-03-26 12:51:47', 1),
+(1, '192.168.137.1', 1, 'admin', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', NULL, NULL, NULL, NULL, 0, 1527714382, 1, '1', 'Admin', 'Istrator', 'Admin', NULL, NULL, NULL, '2018-03-26 12:51:47', 1),
 (8, '::1', 3, NULL, '$2y$08$a6kV9hh03Tjqczmd3yuuUuX0tleO4afU2w7WlX.z9UhkZbrxp/xC.', '', 'ronaldo@gmail.com', NULL, NULL, NULL, NULL, 1519614536, 1519628347, 1, '1', 'Ronaldo', NULL, NULL, '082146631959', NULL, NULL, NULL, NULL),
 (9, '::1', 3, NULL, '$2y$08$sqegjBhnyErZAaLN3zl8B.ar1P40y7S3LbUg8GBeEFJksWJqykD8O', '', 'edi@gmail.com', NULL, NULL, NULL, NULL, 1519723739, 1519725083, 1, '1', 'Edi Siswanto', NULL, NULL, '0822526535', NULL, NULL, NULL, NULL),
 (10, '192.168.137.220', 3, NULL, '$2y$08$gMk5Bjj5L9PC5wN51pesY.JhOpZiBvUIEch9/tRBH1byvXHppfMcG', '', 'rukuman25@gmail.com', NULL, NULL, NULL, NULL, 1519878078, 1519878105, 1, '1', 'Eman', NULL, NULL, '085331358840', NULL, NULL, NULL, NULL),
 (11, '192.168.137.1', 1, 'dimas', '$2y$10$Wd9y7.MLIVeXrfDQsQn3BexGNihlHH0NgHjm2J3paxo1m8AtPFGkO', '', '', NULL, NULL, NULL, NULL, 0, 1522061700, 1, '1', 'dimas', NULL, NULL, NULL, '2018-03-26 12:41:33', 1, NULL, NULL),
 (16, '', 2, '105105', '$2y$10$WNhdVFNSD4K6wg4uyDr8S.rXoLYfzhfQsUk17mDxlFOPpjqKJQAnC', '', '', NULL, NULL, NULL, NULL, 0, 1527472872, 1, '1', 'ALIF AKBAR', NULL, NULL, NULL, '2018-05-27 21:08:52', 1, '2018-05-28 04:01:01', 16),
 (17, '', 2, '102102', '$2y$10$xv50UiK/Hflr9AfV3wEtR.71jI23NTF22m5KB6lImUxTEhxhM1WbC', '', '', NULL, NULL, NULL, NULL, 0, 1527471333, 1, '0', 'ALFIN HIDAYAT', NULL, NULL, NULL, '2018-05-27 21:10:11', 1, NULL, NULL),
-(20, '', 3, '361555401013', '$2y$10$aEoRRXAOgGxuZFMecIaqKerQR1iZwaKPLGmi49nZRPCNIbSC/x7YC', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Savicri Vidirila', NULL, NULL, NULL, '2018-05-28 07:01:12', 1, '2018-05-28 23:54:52', 1),
-(21, '', 3, '361555401015', '$2y$10$ldd8FYS7JSSI/NDc13iyEerHCJ.OQop51GlCpKaim8IFwTilO5hKK', '', '', NULL, NULL, NULL, NULL, 0, 1527541720, 1, '0', 'Teguh Faizin', NULL, NULL, NULL, '2018-05-28 07:01:49', 1, '2018-05-28 23:54:58', 1),
-(22, '', 3, '361555401012', '$2y$10$ianYAosO1hZY5Lf6JCy73OrdIodv5/2uI2ZqDAqHuWE1Epk/gbjBK', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Defrimont Era', NULL, NULL, NULL, '2018-05-28 07:02:32', 1, '2018-05-28 23:55:04', 1),
-(23, '', 3, '361555401033', '$2y$10$Hh7qqDoJqkH8TZvmwkIf1.//DPEyoYxIeBTtHvRE6i6DdOKN6N7yy', '', '', NULL, NULL, NULL, NULL, 0, 1527578778, 1, '1', 'Rahmat Ramadhan Putra', NULL, NULL, NULL, '2018-05-28 07:03:14', 1, '2018-05-29 08:40:50', 23),
+(20, '', 3, '361555401013', '$2y$10$aEoRRXAOgGxuZFMecIaqKerQR1iZwaKPLGmi49nZRPCNIbSC/x7YC', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Savicri Vidirila', NULL, NULL, NULL, '2018-05-28 07:01:12', 1, '2018-05-30 15:07:18', 1),
+(21, '', 3, '361555401015', '$2y$10$ldd8FYS7JSSI/NDc13iyEerHCJ.OQop51GlCpKaim8IFwTilO5hKK', '', '', NULL, NULL, NULL, NULL, 0, 1527541720, 1, '0', 'Teguh Faizin', NULL, NULL, NULL, '2018-05-28 07:01:49', 1, '2018-05-30 15:07:24', 1),
+(22, '', 3, '361555401012', '$2y$10$ianYAosO1hZY5Lf6JCy73OrdIodv5/2uI2ZqDAqHuWE1Epk/gbjBK', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Defrimont Era', NULL, NULL, NULL, '2018-05-28 07:02:32', 1, '2018-05-30 15:07:35', 1),
+(23, '', 3, '361555401033', '$2y$10$Hh7qqDoJqkH8TZvmwkIf1.//DPEyoYxIeBTtHvRE6i6DdOKN6N7yy', '', '', NULL, NULL, NULL, NULL, 0, 1527715669, 1, '1', 'Rahmat Ramadhan Putra', NULL, NULL, NULL, '2018-05-28 07:03:14', 1, '2018-05-29 08:40:50', 23),
 (24, '', 2, '199010052014041002', '$2y$10$XF5bHjxRyZwQNgrKQjGPmOCDOpADFuaff1GME/q6Ki/Y1wE1oIkWm', '', '', NULL, NULL, NULL, NULL, 0, 1527556046, 1, '0', 'Alfin Hidayat,S.T.,M.T.', NULL, NULL, NULL, '2018-05-28 07:04:03', 1, NULL, NULL),
 (25, '', 2, '201636185', '$2y$10$x.9Imd3t3Cc5fw8rXmk/eeiRFQl3g5cLoJLBY4Jk9Ud9Q9/cSVC.6', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Alif Akbar Fitrawan, S.Pd, M.Kom', NULL, NULL, NULL, '2018-05-28 07:04:35', 1, NULL, NULL),
 (26, '', 2, '201136079', '$2y$10$vze2rdff3srpdlAZNL99V.scAJVFnGBPK.ar9mKDc6OEaWybl5VIG', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Dedy Hidayat Kusuma, S.T, M.Cs', NULL, NULL, NULL, '2018-05-28 07:05:11', 1, NULL, NULL),
 (27, '', 2, '198310202014042001', '$2y$10$QjOkxY8zcKvJQ09YBFzrzO1VfmHa7mKeSRqEzfmJL1zCWW/dWGXke', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Eka Mistiko Rini, S.Kom, M. Kom', NULL, NULL, NULL, '2018-05-28 07:05:37', 1, NULL, NULL),
-(28, '', 2, '198010222015041001', '$2y$10$05ELO7z9SvB6HULzjPjR7uvZ8Yb0FfcGBqwJuWtW08Gp2iq1mD0Ry', '', '', NULL, NULL, NULL, NULL, 0, 1527573211, 1, '0', 'I Wayan Suardinata, S.Kom, M.T', NULL, NULL, NULL, '2018-05-28 07:35:17', 1, NULL, NULL),
+(28, '', 2, '198010222015041001', '$2y$10$05ELO7z9SvB6HULzjPjR7uvZ8Yb0FfcGBqwJuWtW08Gp2iq1mD0Ry', '', '', NULL, NULL, NULL, NULL, 0, 1527717044, 1, '0', 'I Wayan Suardinata, S.Kom, M.T', NULL, NULL, NULL, '2018-05-28 07:35:17', 1, NULL, NULL),
 (29, '', 2, '201136080', '$2y$10$mJW3RefDK16zqJuUoZE/PuEkjc08kYei6FfEL5JRq9kcbSNQrTmMi', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Subono, S.T, M.T', NULL, NULL, NULL, '2018-05-28 07:35:59', 1, NULL, NULL),
 (30, '', 2, '200836005', '$2y$10$x0ZMgK7KqphxzxvRJ/ZSA.zHVn1iKlJHyXWBMDGIPVAqAXbbhouVm', '', '', NULL, NULL, NULL, NULL, 0, 1527556239, 1, '0', 'Dianni Yusuf, S.Kom, M. Kom', NULL, NULL, NULL, '2018-05-28 07:36:43', 1, NULL, NULL),
 (31, '', 2, '201136073', '$2y$10$yjogf.l/xLct7k82WuaDzeIDyLbtBv8ruYVoZ98.jtAYEYcOM4zv6', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Herman Yuliandoko, S.T, M.T', NULL, NULL, NULL, '2018-05-28 07:37:29', 1, NULL, NULL),
-(32, '', 3, '361755401001', '$2y$10$CAvK6VBRzeI5TBNeOqMrb.Zvo1SsSV.Q5v/skm33D7uA8n/OfXNUm', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'YUNYA PRILY ARISTA', NULL, NULL, NULL, '2018-05-28 07:44:03', 1, '2018-05-28 07:55:28', 1),
-(33, '', 3, '361755401002', '$2y$10$Y50omDMv4fIlz/vLwIziEe3gfdDMXwFr8CHFZ6OZvzwL9Mu5uEIEy', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'ROBIT HADIANSYAH', NULL, NULL, NULL, '2018-05-28 07:44:40', 1, NULL, NULL),
-(34, '', 3, '361655401001', '$2y$10$WLJzQAN7Tg2UWtYqHYf78eiK28LNCn3wYkxrkDFr8TGOsuKJg7zbO', '', '', NULL, NULL, NULL, NULL, 0, 1527564947, 1, '0', 'Rilo Febrian Erawan Putra', NULL, NULL, NULL, '2018-05-28 07:56:33', 1, NULL, NULL),
-(35, '', 3, '361655401031', '$2y$10$8snC9qV0xlADo..jtxboJ.ijUOAFJ1Dkrbhm4i0j8IvuDBvmyy4.2', '', '', NULL, NULL, NULL, NULL, 0, 1527564894, 1, '0', 'Freliyan Dwi Cahyadi', NULL, NULL, NULL, '2018-05-28 07:57:27', 1, '2018-05-29 00:01:04', 1),
-(36, '', 3, '361655401061', '$2y$10$hzbrUAOhia9FtlewPsZEmOrpyH5OmUPZH5ndKmABAkCeonDReA/8O', '', '', NULL, NULL, NULL, NULL, 0, 1527555568, 1, '0', 'Mohamad Maskur Hadi', NULL, NULL, NULL, '2018-05-28 23:58:33', 1, NULL, NULL),
-(37, '', 3, '361655401090', '$2y$10$2dndDAWBY8V5puKRGGIuN.6xqtgkUCFpWFk5Owv7n4OAQETmtonpu', '', '', NULL, NULL, NULL, NULL, 0, 1527555722, 1, '0', 'Ratna Dewi Agustini', NULL, NULL, NULL, '2018-05-29 00:02:39', 1, NULL, NULL),
-(38, '', 3, '361655401119', '$2y$10$AzDSc8yyXUpBpcDezPcVGOJMkb3c5NurZqocNhkDQSkH2kTfyyaSW', '', '', NULL, NULL, NULL, NULL, 0, 1527555842, 1, '0', 'Moh. Nur Asropik', NULL, NULL, NULL, '2018-05-29 00:03:23', 1, NULL, NULL),
-(39, '', 3, '361655401148', '$2y$10$tH7DfNemg/AEcGTgpCX8n..RtoPFSUxOluJJpxMXFzLkurst49syW', '', '', NULL, NULL, NULL, NULL, 0, 1527555970, 1, '0', 'Destiyar Tiyananda', NULL, NULL, NULL, '2018-05-29 00:04:47', 1, NULL, NULL),
 (40, '', 2, '2010.36.057', '$2y$10$ydmuSUJKNJVYNagvM1guz.atszekb/RYO4AZVfk/iIbkm3LNIy/LK', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Endi Sailul Haq, S.T., M.Kom', NULL, NULL, NULL, '2018-05-29 00:07:23', 1, NULL, NULL),
 (41, '', 2, '201136078', '$2y$10$lcs1/nPThFyHxZ/2Z9.zpukDwGGgSYqNhJPEp68nWBwnJ97SkYXc6', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Vivien Arief Wardhany, S.T,M.T', NULL, NULL, NULL, '2018-05-29 00:10:01', 1, NULL, NULL),
 (42, '', 2, '201336106', '$2y$10$xLgMRHXCBg28zlBdd5SeteNfwONGqsQiBv8rF9p/L.2X.XS14BSxm', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Farizqi Panduardi, S.ST., M.T', NULL, NULL, NULL, '2018-05-29 00:12:29', 1, NULL, NULL),
-(43, '', 3, '361555401001', '$2y$10$dtu7se/8tW6gmKFyatoVMuGvSFcaGM80LPaZ7P.qyNMBwsA6/ZWWC', '', '', NULL, NULL, NULL, NULL, 0, 1527565009, 1, '0', 'Edi Siswanto', NULL, NULL, NULL, '2018-05-29 05:36:30', 1, NULL, NULL);
+(47, '', 2, '361755401008', '$2y$10$22aztk4vZ2114xySnseQMeZlUyAgqJm11rIR7eexnlcYM3ao/ZgDi', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'FIKRI HAZMI ROZAQI', NULL, NULL, NULL, '2018-05-30 07:19:14', 1, NULL, NULL),
+(49, '', 3, '361755401011', '$2y$10$HRMjGRmrGomOAyZbnUBSveQ3kHCXPZWijA1r9.81X0RecfGw7dxyO', '', '', NULL, NULL, NULL, NULL, 0, 1527690536, 1, '0', 'DEDY JONI KURNIAWAN', NULL, NULL, NULL, '2018-05-30 15:22:34', 1, NULL, NULL),
+(50, '', 3, '361755401012', '$2y$10$cNe08ZfWvzazGhW.PfCrOupkSboydHgdMc7IM7axjCT5InxHfiOeC', '', '', NULL, NULL, NULL, NULL, 0, 1527690570, 1, '0', 'ARYO WHISNU W', NULL, NULL, NULL, '2018-05-30 15:23:01', 1, NULL, NULL),
+(51, '', 3, '361755401016', '$2y$10$9B1wEJsqHT4yiY6kVA4K2OYDYHMILAW5E26ea1LpPOwbU1CyXDMya', '', '', NULL, NULL, NULL, NULL, 0, 1527690618, 1, '0', 'MIRTA JHOSWANDA', NULL, NULL, NULL, '2018-05-30 15:44:43', 1, NULL, NULL),
+(52, '', 3, '361755401017', '$2y$10$N/TF9TPB4mxMRp/zeXkmqOZRzQG4bUilbewXHzuPNpFnHf8DWs9O2', '', '', NULL, NULL, NULL, NULL, 0, 1527690647, 1, '0', 'DINGA SANGATA', NULL, NULL, NULL, '2018-05-30 15:45:20', 1, NULL, NULL),
+(53, '', 3, '123', '$2y$10$FwwaImNDm9kLbY/P/Eu0cOJchBZ/cCYQJHp9sgrN6gfkhiBHtF0Ou', '', '', NULL, NULL, NULL, NULL, 0, 1527715735, 1, '0', 'Beni', NULL, NULL, NULL, '2018-05-30 23:12:25', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -645,7 +744,7 @@ ALTER TABLE `angkatan`
 -- AUTO_INCREMENT for table `dosen`
 --
 ALTER TABLE `dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `groups`
@@ -669,13 +768,13 @@ ALTER TABLE `kuesioner`
 -- AUTO_INCREMENT for table `kuesioner_isi`
 --
 ALTER TABLE `kuesioner_isi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `kuesioner_isi_detail`
 --
 ALTER TABLE `kuesioner_isi_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=429;
 
 --
 -- AUTO_INCREMENT for table `kuesioner_kategori`
@@ -693,7 +792,7 @@ ALTER TABLE `login_attempts`
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `matakuliah`
@@ -705,7 +804,7 @@ ALTER TABLE `matakuliah`
 -- AUTO_INCREMENT for table `pengampu_makul`
 --
 ALTER TABLE `pengampu_makul`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `periode`
@@ -723,7 +822,7 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `users_groups`
