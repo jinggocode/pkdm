@@ -54,6 +54,7 @@
             </li>
           </ul>
         </li>
+        <li class="{{($page == 'users')?'active':''}}"><a href="{{site_url('admin/users')}}"><i class="fa fa-user"></i> <span>Data Pengguna Aplikasi</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

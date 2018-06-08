@@ -45,8 +45,23 @@ class Statistik extends MY_Controller
 			->with_periode()
 			->where('id_periode', $id_periode)
 			->get();
-
-		$this->render('dosen/statistik/makul', $data);
+ 
+		if ($this->uri->segment(5) == 'get_list') {
+			foreach ($data['makul'] as $value) {
+				$list = $this->kuesioner_isi_model->getListPenilaian($value->id_pengampu, $value->id_periode);
+				$dt[] = array(
+					'judul' => 'ANGKATAN '.$value->mahasiswa->angkatan->nama.' - KELAS '.$value->mahasiswa->kelas->nama.' || '.($value->pengampu->makul->jenis == '0'?'TEORI ':'PRAKIKUM ').$value->pengampu->makul->nama, 
+					'kurang' => $list->kurang, 
+					'cukup' => $list->cukup, 
+					'baik' => $list->baik, 
+					'sangat_baik' => $list->sangat_baik, 
+				); 
+			} 
+			print_r(json_encode($dt, true));
+		} else { 
+			$this->render('dosen/statistik/makul', $data); 
+		}
+ 
 	}
 
 	public function grafik($id_pengampu)
@@ -60,7 +75,7 @@ class Statistik extends MY_Controller
 			->where('id_pengampu', $id_pengampu)
 			->where('id_periode', $id_periode) 
 			->group_by('id_periode')
-			->get();
+			->get(); 
 
 		$data['jumlah_kurang'] = $this->kuesioner_isi_model
 			->where('id_pengampu', $id_pengampu)

@@ -11,6 +11,8 @@ if ($user->group_id == 2){
     redirect('auth/logout', 'refresh');
 } else if ($user->group_id == 3){
     redirect('auth/logout', 'refresh');
+} else if ($user->group_id == 4){
+    redirect('auth/logout', 'refresh');
 }
 ?>
 <!DOCTYPE html>

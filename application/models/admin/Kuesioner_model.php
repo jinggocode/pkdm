@@ -73,10 +73,4 @@ class kuesioner_model extends MY_Model
 		);
 		return $data;
 	}
-
-	public function getTahunAjaranDosen($id_dosen)
-	{
-		// ambil data dari tabel kuesioner, tampilkan id_periode nya
-
-	}
 }

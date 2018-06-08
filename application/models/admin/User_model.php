@@ -10,6 +10,7 @@ class User_model extends MY_Model
         $this->primary_key = 'id';
         $this->protected = array('id');
 
+		$this->has_one['group'] = array('Group_model', 'id', 'group_id');
 		parent::__construct();
 	}
 

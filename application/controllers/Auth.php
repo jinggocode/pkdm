@@ -58,8 +58,9 @@ class Auth extends MY_Controller {
 				redirect('dosen/homepage', 'refresh');
 			} else if ($user->group_id === "3") {
 				redirect('mahasiswa/homepage', 'refresh');
-			} else {
-				dump('asd');
+			} else if ($user->group_id === "4") {
+				redirect('pimpinan/homepage', 'refresh');
+			} else { 
 				redirect('auth/logout', 'refresh');
 			}
 		}
@@ -85,8 +86,9 @@ class Auth extends MY_Controller {
 					redirect('dosen/homepage', 'refresh');
 				} else if ($user->group_id === "3") {
 					redirect('mahasiswa/homepage', 'refresh');
-				} else {
-				dump('asd');
+				} else if ($user->group_id === "4") {
+					redirect('pimpinan/homepage', 'refresh');
+				} else { 
 					redirect('auth/logout', 'refresh');
 				}
 			}
