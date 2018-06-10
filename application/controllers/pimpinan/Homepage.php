@@ -25,13 +25,7 @@ class Homepage extends MY_Controller
  
 	public function index()
 	{
-		$data['user'] = $this->ion_auth->user()->row();
-		$dosen = $this->dosen_model->where('id_user', $data['user']->id)->get();
-		$data['tahun_ajaran'] = $this->kuesioner_isi_model
-			->fields('id')
-			->with_periode() 
-			->group_by('id_periode')
-			->get_all(); 
+		$data['user'] = $this->ion_auth->user()->row(); 
 		$data['prodi'] = $this->prodi_model->get_all();
 
 		$this->render('pimpinan/home', $data);

@@ -1,6 +1,6 @@
 @layout('_layout/dosen/index')
 
-@section('title')Beranda@endsection
+@section('title')Beranda @endsection
 
 @section('content')
 
@@ -19,8 +19,7 @@
     </center>
   
     <h2><strong>{{$periode->periode->tahun}} - SEMESTER {{($periode->periode->semester == '1')?'GANJIL':'GENAP'}}</strong></h2>
-
-    
+ 
     <div id="barchart_material" style="width: 900px; height: 500px;"></div>
   </div>
   <div class="box-body" style="font-size: 20px">

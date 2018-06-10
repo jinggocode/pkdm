@@ -23,6 +23,7 @@
   <div class="box-body" style="font-size: 20px">
     <table class="table table-striped table-hover">
       <thead>
+        <th style="width: 10%">Peringakat</th>
         <th>Nama Dosen</th>
         <th>Nilai Rata - rata</th>
       </thead>
@@ -35,6 +36,7 @@
           <?php $no = 1 ?>
           @foreach($data as $row)  
             <tr>
+              <td align="center">{{$no++}}.</td>
               <td>{{$row->nama}}</td>
               <td>
                 {{ceil($row->nilai)}}

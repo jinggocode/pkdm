@@ -10,6 +10,7 @@
         <li class="{{($page == '' || $page == 'homepage')?'active':''}}"><a href="{{site_url('admin/homepage')}}"><i class="fa fa-dashboard"></i> <span>Beranda</span></a></li>
         <li class="{{($page == 'mahasiswa')?'active':''}}"><a href="{{site_url('admin/mahasiswa')}}"><i class="fa fa-user"></i> <span>Data Mahasiswa</span></a></li>
         <li class="{{($page == 'dosen')?'active':''}}"><a href="{{site_url('admin/dosen')}}"><i class="fa fa-user"></i> <span>Data Dosen</span></a></li>
+        <li class="{{($page == 'laporan')?'active':''}}"><a href="{{site_url('admin/laporan/penilaian/ajaran')}}"><i class="fa fa-file"></i> <span>Laporan Penilaian</span></a></li>
         <li class="treeview {{($page == 'kuesioner')?'active':''}}">
           <a href="#">
             <i class="fa fa-database"></i> <span>Data Kuesioner</span>
