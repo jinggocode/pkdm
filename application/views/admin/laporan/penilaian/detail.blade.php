@@ -3,40 +3,40 @@
 @section('title')Data Penilaian @endsection
 
 @section('content')
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Hasil Penilaian Dosen {{$dosen->nama}}
-      </h1>
-    </section>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Hasil Penilaian Dosen {{$dosen->nama}}
+  </h1>
+</section>
 
-    <!-- Main content -->
-    <section class="content">
+<!-- Main content -->
+<section class="content">
 
-      <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
-          
-          <center><a href="{{site_url('admin/laporan/penilaian/statistik/'.$periode->periode->id.'/'.$dosen->id_prodi)}}" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a></center> 
+  <!-- Default box -->
+  <div class="box">
+    <div class="box-header with-border">
+      
+      <center><a href="{{site_url('admin/laporan/penilaian/statistik/'.$periode->periode->id.'/'.$dosen->id_prodi)}}" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a></center> 
 
-          <h4><b>Tahun Ajaran {{$periode->periode->tahun.' Semester '.$periode->periode->semester}}</b></h4>
-        </div>
-        <div class="box-body">  
-          
-          <div id="barchart_material" style="width: 900px; height: 500px;"></div>
- 
-        </div> 
-      </div>
-      <!-- /.box -->
+      <h4><b>Tahun Ajaran {{$periode->periode->tahun.' Semester '.$periode->periode->semester}}</b></h4>
+    </div>
+    <div class="box-body">  
+      
+      <div id="barchart_material" style="width: 900px; height: 500px;"></div>
 
-    </section>
-    <!-- /.content -->
+    </div> 
+  </div>
+  <!-- /.box -->
+
+</section>
+<!-- /.content -->
 @endsection
  
 @section('script') 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://d19m59y37dris4.cloudfront.net/hub/1-3-0/vendor/jquery.cookie/jquery.cookie.js"> </script>
-<script type="text/javascript">
+<script type="text/javascript" >
   // Load the Visualization API and the line package.
   google.charts.load('current', {'packages':['bar']});
   // Set a callback to run when the Google Visualization API is loaded.

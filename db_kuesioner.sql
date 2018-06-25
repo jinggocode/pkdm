@@ -2,8 +2,8 @@
 -- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 30, 2018 at 11:53 PM
+-- Host: 127.0.0.1
+-- Generation Time: Jun 25, 2018 at 10:07 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 5.6.36
 
@@ -21,6 +21,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_kuesioner`
 --
+
+DELIMITER $$
+--
+-- Functions
+--
+CREATE DEFINER=`root`@`localhost` FUNCTION `jumlah_klasifikasi` (`id_dosen` INT, `id_per` INT, `k` VARCHAR(50)) RETURNS INT(11) BEGIN
+DECLARE kls int;
+select count(*) INTO kls from kuesioner_isi WHERE id_pengampu = id_dosen and id_periode = id_per and klasifikasi =k;  
+return kls;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -100,7 +112,8 @@ CREATE TABLE `groups` (
 INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 (1, 'admin', 'Administrator'),
 (2, 'dosen', 'Dosen'),
-(3, 'mahasiswa', 'Mahasiswa');
+(3, 'mahasiswa', 'Mahasiswa'),
+(4, 'pimpinan', 'Pimpinan Kampus');
 
 -- --------------------------------------------------------
 
@@ -575,7 +588,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `group_id`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `status_password`, `first_name`, `last_name`, `company`, `phone`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(1, '192.168.137.1', 1, 'admin', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', NULL, NULL, NULL, NULL, 0, 1527714382, 1, '1', 'Admin', 'Istrator', 'Admin', NULL, NULL, NULL, '2018-03-26 12:51:47', 1),
+(1, '192.168.137.1', 1, 'admin', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', NULL, NULL, NULL, NULL, 0, 1529743314, 1, '1', 'Admin', 'Istrator', 'Admin', NULL, NULL, NULL, '2018-03-26 12:51:47', 1),
 (8, '::1', 3, NULL, '$2y$08$a6kV9hh03Tjqczmd3yuuUuX0tleO4afU2w7WlX.z9UhkZbrxp/xC.', '', 'ronaldo@gmail.com', NULL, NULL, NULL, NULL, 1519614536, 1519628347, 1, '1', 'Ronaldo', NULL, NULL, '082146631959', NULL, NULL, NULL, NULL),
 (9, '::1', 3, NULL, '$2y$08$sqegjBhnyErZAaLN3zl8B.ar1P40y7S3LbUg8GBeEFJksWJqykD8O', '', 'edi@gmail.com', NULL, NULL, NULL, NULL, 1519723739, 1519725083, 1, '1', 'Edi Siswanto', NULL, NULL, '0822526535', NULL, NULL, NULL, NULL),
 (10, '192.168.137.220', 3, NULL, '$2y$08$gMk5Bjj5L9PC5wN51pesY.JhOpZiBvUIEch9/tRBH1byvXHppfMcG', '', 'rukuman25@gmail.com', NULL, NULL, NULL, NULL, 1519878078, 1519878105, 1, '1', 'Eman', NULL, NULL, '085331358840', NULL, NULL, NULL, NULL),
@@ -590,7 +603,7 @@ INSERT INTO `users` (`id`, `ip_address`, `group_id`, `username`, `password`, `sa
 (25, '', 2, '201636185', '$2y$10$x.9Imd3t3Cc5fw8rXmk/eeiRFQl3g5cLoJLBY4Jk9Ud9Q9/cSVC.6', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Alif Akbar Fitrawan, S.Pd, M.Kom', NULL, NULL, NULL, '2018-05-28 07:04:35', 1, NULL, NULL),
 (26, '', 2, '201136079', '$2y$10$vze2rdff3srpdlAZNL99V.scAJVFnGBPK.ar9mKDc6OEaWybl5VIG', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Dedy Hidayat Kusuma, S.T, M.Cs', NULL, NULL, NULL, '2018-05-28 07:05:11', 1, NULL, NULL),
 (27, '', 2, '198310202014042001', '$2y$10$QjOkxY8zcKvJQ09YBFzrzO1VfmHa7mKeSRqEzfmJL1zCWW/dWGXke', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Eka Mistiko Rini, S.Kom, M. Kom', NULL, NULL, NULL, '2018-05-28 07:05:37', 1, NULL, NULL),
-(28, '', 2, '198010222015041001', '$2y$10$05ELO7z9SvB6HULzjPjR7uvZ8Yb0FfcGBqwJuWtW08Gp2iq1mD0Ry', '', '', NULL, NULL, NULL, NULL, 0, 1527717044, 1, '0', 'I Wayan Suardinata, S.Kom, M.T', NULL, NULL, NULL, '2018-05-28 07:35:17', 1, NULL, NULL),
+(28, '', 2, '198010222015041001', '$2y$10$05ELO7z9SvB6HULzjPjR7uvZ8Yb0FfcGBqwJuWtW08Gp2iq1mD0Ry', '', '', NULL, NULL, NULL, NULL, 0, 1529743560, 1, '0', 'I Wayan Suardinata, S.Kom, M.T', NULL, NULL, NULL, '2018-05-28 07:35:17', 1, NULL, NULL),
 (29, '', 2, '201136080', '$2y$10$mJW3RefDK16zqJuUoZE/PuEkjc08kYei6FfEL5JRq9kcbSNQrTmMi', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Subono, S.T, M.T', NULL, NULL, NULL, '2018-05-28 07:35:59', 1, NULL, NULL),
 (30, '', 2, '200836005', '$2y$10$x0ZMgK7KqphxzxvRJ/ZSA.zHVn1iKlJHyXWBMDGIPVAqAXbbhouVm', '', '', NULL, NULL, NULL, NULL, 0, 1527556239, 1, '0', 'Dianni Yusuf, S.Kom, M. Kom', NULL, NULL, NULL, '2018-05-28 07:36:43', 1, NULL, NULL),
 (31, '', 2, '201136073', '$2y$10$yjogf.l/xLct7k82WuaDzeIDyLbtBv8ruYVoZ98.jtAYEYcOM4zv6', '', '', NULL, NULL, NULL, NULL, 0, NULL, 1, '0', 'Herman Yuliandoko, S.T, M.T', NULL, NULL, NULL, '2018-05-28 07:37:29', 1, NULL, NULL),
@@ -602,7 +615,8 @@ INSERT INTO `users` (`id`, `ip_address`, `group_id`, `username`, `password`, `sa
 (50, '', 3, '361755401012', '$2y$10$cNe08ZfWvzazGhW.PfCrOupkSboydHgdMc7IM7axjCT5InxHfiOeC', '', '', NULL, NULL, NULL, NULL, 0, 1527690570, 1, '0', 'ARYO WHISNU W', NULL, NULL, NULL, '2018-05-30 15:23:01', 1, NULL, NULL),
 (51, '', 3, '361755401016', '$2y$10$9B1wEJsqHT4yiY6kVA4K2OYDYHMILAW5E26ea1LpPOwbU1CyXDMya', '', '', NULL, NULL, NULL, NULL, 0, 1527690618, 1, '0', 'MIRTA JHOSWANDA', NULL, NULL, NULL, '2018-05-30 15:44:43', 1, NULL, NULL),
 (52, '', 3, '361755401017', '$2y$10$N/TF9TPB4mxMRp/zeXkmqOZRzQG4bUilbewXHzuPNpFnHf8DWs9O2', '', '', NULL, NULL, NULL, NULL, 0, 1527690647, 1, '0', 'DINGA SANGATA', NULL, NULL, NULL, '2018-05-30 15:45:20', 1, NULL, NULL),
-(53, '', 3, '123', '$2y$10$FwwaImNDm9kLbY/P/Eu0cOJchBZ/cCYQJHp9sgrN6gfkhiBHtF0Ou', '', '', NULL, NULL, NULL, NULL, 0, 1527715735, 1, '0', 'Beni', NULL, NULL, NULL, '2018-05-30 23:12:25', 1, NULL, NULL);
+(53, '', 3, '123', '$2y$10$FwwaImNDm9kLbY/P/Eu0cOJchBZ/cCYQJHp9sgrN6gfkhiBHtF0Ou', '', '', NULL, NULL, NULL, NULL, 0, 1527715735, 1, '0', 'Beni', NULL, NULL, NULL, '2018-05-30 23:12:25', 1, NULL, NULL),
+(54, '::1', 4, '123123', '$2y$10$u5NcSkHyGrjWjKmJ8wtxKONXVQ4siu7/L0yd0CHUG0u1PluCfiozm', '', '', NULL, NULL, NULL, NULL, 0, 1529743288, 1, '0', 'Pak Dir', NULL, NULL, NULL, '2018-06-07 10:26:11', 1, '2018-06-07 10:43:12', 1);
 
 -- --------------------------------------------------------
 
@@ -744,13 +758,13 @@ ALTER TABLE `angkatan`
 -- AUTO_INCREMENT for table `dosen`
 --
 ALTER TABLE `dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `kelas`
@@ -822,7 +836,7 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `users_groups`
