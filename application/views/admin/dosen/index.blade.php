@@ -23,6 +23,13 @@
             <div class="col-lg-6 col-md-6">
                 <form class="form-inline" action="{{site_url('admin/dosen/search')}}" method="get">
                   
+                  <div class="form-group">
+                    <select name="filter" required="required" id="filter" class="form-control">
+                        <option value="">Cari Berdasarkan</option>
+                        <option {{(isset($search_data['filter'])&& $search_data['filter'] == 'nama')?'selected':''}} value="nama">Nama</option> 
+                        <option {{(isset($search_data['filter'])&& $search_data['filter'] == 'nik')?'selected':''}} value="nik">NIK</option> 
+                    </select>
+                  </div>
                   <div class="form-group"> 
                     <input type="text" value="{{(isset($search_data['keyword']))?$search_data['keyword']:''}}" name="keyword" class="form-control" id="keyword" placeholder="Cari Berdasarkan Judul" style="margin-right: 10px" autofocus="autofocus">
                   </div>
@@ -37,15 +44,7 @@
                         <option {{(isset($search_data['sort'])&& $search_data['sort'] == '1')?'selected':''}} value="1">Data Terbaru</option>
                         <option {{(isset($search_data['sort'])&& $search_data['sort'] == '2')?'selected':''}} value="2">Data Lama</option> 
                     </select>
-                  </div> 
-                  <div class="form-group">  
-                    <select name="category" id="category" class="form-control" onchange="this.form.submit();">
-                        <option value="">Kategori</option> 
-                        @foreach ($category as $row)
-                          <option {{(isset($search_data['category'])&& $search_data['category'] == $row->id)?'selected':''}} value="{{$row->id}}">{{$row->nama}}</option> 
-                        @endforeach
-                    </select>
-                  </div> 
+                  </div>  
                 </div>
                 </form>
             </div>

@@ -111,7 +111,7 @@ class Auth extends MY_Controller {
 				'id'    => 'login-email',
 				'type'  => 'text',
 				'class' => 'form-control',
-				'placeholder' => 'Email',
+				'placeholder' => 'Username',
 				'autofocus' => '',
 				'value' => $this->form_validation->set_value('identity'),
 				);

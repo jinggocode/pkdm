@@ -19,29 +19,7 @@
         <a href="{{site_url('admin/kuesioner/pertanyaan/add')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
       </div>
         <div class="box-body">
-          <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <form class="form-inline" action="{{site_url('admin/kuesioner/pertanyaan/search')}}" method="get">
-
-                  <div class="form-group">
-                    <input type="text" value="{{(isset($search_data['keyword']))?$search_data['keyword']:''}}" name="keyword" class="form-control" id="keyword" placeholder="Cari Berdasarkan Nama" style="margin-right: 10px" autofocus="autofocus">
-                  </div>
-                  <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> Cari</button>
-
-            </div>
-            <div class="col-lg-6 col-md-6" align="right">
-                <div class="form-inline">
-                  <div class="form-group">
-                    <select name="sort" id="sort" class="form-control" onchange="this.form.submit();">
-                        <option value="">Tampilkan Berdasarkan</option>
-                        <option {{(isset($search_data['sort'])&& $search_data['sort'] == '1')?'selected':''}} value="1">Data Terbaru</option>
-                        <option {{(isset($search_data['sort'])&& $search_data['sort'] == '2')?'selected':''}} value="2">Data Lama</option>
-                    </select>
-                  </div>
-                </div>
-                </form>
-            </div>
-        </div>
+            
           <table class="table table-hover table-striped">
               <thead>
                 <th style="width: 3%">No.</th>

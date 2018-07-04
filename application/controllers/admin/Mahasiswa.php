@@ -46,8 +46,8 @@ class Mahasiswa extends MY_Controller
 		$data = $this->mahasiswa_model
 			->with_prodi()
 			->with_kelas()
-			->limit($config['per_page'], $offset = $start)
 			->with_angkatan()
+			->limit($config['per_page'], $offset = $start)
 			->get_all();
  
 		$config['total_rows'] = $this->mahasiswa_model

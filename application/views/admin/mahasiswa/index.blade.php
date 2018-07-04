@@ -23,6 +23,13 @@
             <div class="col-lg-6 col-md-6">
                 <form class="form-inline" action="{{site_url('admin/mahasiswa/search')}}" method="get">
                   
+                  <div class="form-group">
+                    <select name="filter" required="required" id="filter" class="form-control">
+                        <option value="">Cari Berdasarkan</option>
+                        <option {{(isset($search_data['filter'])&& $search_data['filter'] == 'nama')?'selected':''}} value="nama">Nama</option> 
+                        <option {{(isset($search_data['filter'])&& $search_data['filter'] == 'nim')?'selected':''}} value="nim">NIM</option> 
+                    </select>
+                  </div>
                   <div class="form-group"> 
                     <input type="text" value="{{(isset($search_data['keyword']))?$search_data['keyword']:''}}" name="keyword" class="form-control" id="keyword" placeholder="Cari Berdasarkan Nama" style="margin-right: 10px" autofocus="autofocus">
                   </div>

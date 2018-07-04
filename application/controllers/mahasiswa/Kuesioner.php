@@ -57,6 +57,8 @@ class Kuesioner extends MY_Controller
 				->get(); 
 
 		$periode = $this->periode_model->where('status','1')->get();
+
+		// dari inputan
 		$data = $this->input->post();
 
 		$data_kuesioner_isi = array(
@@ -68,7 +70,7 @@ class Kuesioner extends MY_Controller
 		$insert_kusesioner_isi = $this->kuesioner_isi_model->insert($data_kuesioner_isi);
 		unset($data['id_dosen'], $data['id_pengampu']);
 
-		while ($fruit_name = current($data)) {
+		while ($kuesioner = current($data)) {
 				$id_kuesioner = key($data);
 				$data_kuesioner_detail = array(
 					'id_periode' => $periode->id,
