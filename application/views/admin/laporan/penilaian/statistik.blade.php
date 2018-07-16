@@ -21,7 +21,7 @@
               <a href="{{site_url('admin/laporan/penilaian/prodi/1/'.$periode->id)}}" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a> 
             </div>
             <div class="col-md-6" align="right">
-                <a href="{{ site_url('admin/laporan/penilaian/cetak/'.$periode->id.'/'.$prodi->id )}}" class="btn btn-primary"><i class="fa fa-print"></i> Cetak PDF</a> 
+                <a target="_BLANK" href="{{ site_url('admin/laporan/penilaian/cetak/'.$periode->id.'/'.$prodi->id )}}" class="btn btn-primary"><i class="fa fa-print"></i> Cetak PDF</a> 
             </div>
           </div>
         
