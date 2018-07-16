@@ -6,7 +6,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Hasil Penilaian Prodi {{$prodi->nama}}
+        Hasil Penilaian Prodi {{ $prodi->nama }}
       </h1>
     </section>
 
@@ -16,14 +16,21 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border"> 
-          <center><a href="{{site_url('admin/laporan/penilaian/prodi/1/'.$periode->id)}}" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a></center>
-
-          <h4><b>Tahun Ajaran {{$periode->tahun.' Semester '.$periode->semester}}</b></h4>
+          <div class="row">
+            <div class="col-md-6">
+              <a href="{{site_url('admin/laporan/penilaian/prodi/1/'.$periode->id)}}" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a> 
+            </div>
+            <div class="col-md-6" align="right">
+                <a href="{{ site_url('admin/laporan/penilaian/cetak/'.$periode->id.'/'.$prodi->id )}}" class="btn btn-primary"><i class="fa fa-print"></i> Cetak PDF</a> 
+            </div>
+          </div>
+        
+          <h4><b>Tahun Ajaran {{ $periode->tahun.' Semester' }} {{ ($periode->semester == 1)?'Ganjil':'Genap' }}</b></h4>
         </div>
         <div class="box-body">  
           <table class="table table-striped table-hover">
             <thead>
-              <th style="width: 10%">Peringakat</th>
+              <th style="width: 10%">Peringkat</th>
               <th>Nama Dosen</th>
               <th>Nilai Rata - rata</th>
               <th>Aksi</th>

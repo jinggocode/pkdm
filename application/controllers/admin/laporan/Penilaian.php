@@ -89,95 +89,12 @@ class Penilaian extends MY_Controller
 					'sangat_baik' => $list->sangat_baik, 
 				); 
 			} 
-			print_r(json_encode($dt, true));
+			echo json_encode($dt, true);
 		} else { 
 			$this->render('admin/laporan/penilaian/detail', $data);
 		}
  
-	}
-	public function search()
-	{
-		$search_data = $this->input->get();
-
-		$data = $this->dosen_model->search($search_data);
-
-		$this->generateCsrf();
-		$this->render('admin/dosen/index', $data);
-	}
-
-	public function add()
-	{
-		$data['prodi'] = $this->prodi_model->get_all();
-
-		$this->generateCsrf();
-		$this->render('admin/dosen/add', $data);
-	}
-	public function save()
-	{
-		$this->form_validation->set_rules('nama', 'Nama', 'trim|required|min_length[3]|max_length[70]');
-		$this->form_validation->set_rules('nik', 'NIK', 'trim|required|min_length[3]|max_length[50]');
-
-		if ($this->form_validation->run() == false) {
-			$data['prodi'] = $this->prodi_model->get_all();
-
-			$this->generateCsrf();
-			$data['page'] = $this->uri->segment(2);
-			$this->render('admin/dosen/add', $data);
-		} else {
-			$user_data['first_name'] = $this->input->post('nama');
-			$user_data['username'] = $this->input->post('nik');
-			$user_data['password'] = password_hash('default', PASSWORD_BCRYPT);
-			$user_data['group_id'] = '2';
-			$insert_user = $this->user_model->insert($user_data);
-
-			$data = $this->input->post();
-			$data['id_user'] = $insert_user;
-
-			$insert = $this->dosen_model->insert($data);
-			if ($insert == false) {
-				echo "ada kesalahan";
-			} else {
-				$this->message('Data berhasi di Simpan!', 'success');
-				$this->go('admin/dosen'); //redirect ke dosen
-			}
-		}
-	}
-
-	public function edit($id)
-	{
-		$data['data'] = $this->dosen_model->get($id);
-		$data['prodi'] = $this->prodi_model->get_all();
-
-		$this->generateCsrf();
-		$this->render('admin/dosen/edit', $data);
-	}
-	public function update()
-	{
-		$this->form_validation->set_rules('nama', 'Nama', 'trim|required|min_length[3]|max_length[70]');
-		$this->form_validation->set_rules('nik', 'NIK', 'trim|required|min_length[3]|max_length[50]');
-
-		if ($this->form_validation->run() == false) {
-			$data['data'] = $this->input->post();
-			$data['prodi'] = $this->prodi_model->get_all();
-
-			$this->generateCsrf();
-			$this->render('admin/dosen/edit', $data);
-		} else {
-			$user_data['first_name'] = $this->input->post('nama');
-			$user_data['username'] = $this->input->post('nik');
-			$insert_user = $this->user_model->update($user_data, $this->input->post('id_user'));
-
-			$data = $this->input->post();
-
-			$update = $this->dosen_model->update($data, $this->input->post('id'));
-			if ($update == false) {
-				echo "ada kesalahan";
-			} else {
-				$this->message('Data berhasi di Ubah!', 'success');
-				$this->go('admin/dosen'); //redirect ke dosen
-			}
-		}
-	}
+	} 
 
 	public function delete($id = '')
 	{
@@ -187,5 +104,38 @@ class Penilaian extends MY_Controller
 
 		$this->dosen_model->delete($id);
 		$this->go('admin/dosen');
+	}
+
+	public function cetak($id_periode)
+	{ 
+		$this->load->library('html2pdf');
+
+		$id_prodi = $this->uri->segment(6); 
+		$data['prodi'] = $this->prodi_model->get($id_prodi);
+		$data['periode'] = $this->periode_model->get($id_periode);
+		
+		$data['data'] = $this->kuesioner_isi_model->getListNilaiTotalDosen($id_prodi, $id_periode); 
+ 
+		// generate nama laporan
+		$filename = 'Laporan Penilaian Prodi '.$data['prodi']->nama.' Tahun Ajaran '.$data['periode']->tahun.' Semester '.$data['periode']->semester.'_'. date("Y_m_d-His"); 
+		
+		// configurasi html2pdf
+		$this->html2pdf->folder('./laporan/');
+		//Set the filename to save/download as
+		$this->html2pdf->filename($filename);
+		//Set the paper defaults
+		$this->html2pdf->paper('a4', 'portrait');
+		
+		//Load html view
+		$this->html2pdf->html($this->load->view('admin/laporan/penilaian/cetak_pdf', $data, true));
+		// dump('asd');
+		if ($path = $this->html2pdf->create('save')) {
+			//PDF was successfully saved or downloaded
+			// echo 'PDF saved to: ' . $path; 
+			// $this->load->view('admin/laporan/penilaian/cetak_pdf', $data);
+			$this->go($path); 
+		} else {
+			dump('asd');
+		}
 	}
 }

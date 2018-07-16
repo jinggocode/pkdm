@@ -70,6 +70,7 @@ class Dosen extends MY_Controller
 	{
 		$search_data = $this->input->get();
 
+		// proses pencarian
 		$data = $this->dosen_model->search($search_data);
 
 		$this->generateCsrf();

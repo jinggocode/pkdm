@@ -23,7 +23,10 @@
     </div>
     <div class="box-body">  
       
-      <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+      <!-- menampilkan grafik -->
+      <div id="barchart_material" style="width: 900px; height: 500px;">
+
+      </div>
 
     </div> 
   </div>
