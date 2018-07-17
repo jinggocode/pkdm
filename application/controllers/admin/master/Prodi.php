@@ -78,7 +78,11 @@ class Prodi extends MY_Controller
 	public function save()
 	{
 		// form validation
-		$this->form_validation->set_rules('nama', 'Nama', 'trim|required|min_length[3]|max_length[50]');
+		$this->form_validation->set_rules('nama', 'Nama', 'trim|required|min_length[10]|is_unique[prodi.nama]',
+        array(
+                'required'      => 'Harus di isi',
+                'is_unique'     => 'Nama Program Studi '.$this->input->post('nama').' sudah ada'
+        ));   
 		 
 		if ($this->form_validation->run() == FALSE) { 
 
