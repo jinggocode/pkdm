@@ -77,8 +77,12 @@ class Angkatan extends MY_Controller
 	}
 	public function save()
 	{
-		// form validation
-		$this->form_validation->set_rules('nama', 'Nama', 'trim|required|min_length[3]|max_length[50]');
+		// form validation 
+		$this->form_validation->set_rules('nama', 'Nama', 'trim|required|min_length[4]|is_unique[angkatan.nama]',
+        array(
+                'required'      => 'Harus di isi',
+                'is_unique'     => 'Nama Angkatan '.$this->input->post('nama').' sudah ada'
+        ));   
 		 
 		if ($this->form_validation->run() == FALSE) { 
 

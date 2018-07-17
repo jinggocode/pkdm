@@ -78,9 +78,12 @@ class Kelas extends MY_Controller
 	}
 	public function save()
 	{
-		// form validation
-		$this->form_validation->set_rules('nama', 'Nama', 'trim|required|min_length[1]|max_length[20]');
-		$this->form_validation->set_rules('id_prodi', 'Program Studi', 'trim|required|min_length[1]|max_length[2]');
+		// form validation 
+		$this->form_validation->set_rules('nama', 'Nama', 'trim|required|min_length[1]|is_unique[kelas.nama]',
+        array(
+                'required'      => 'Harus di isi',
+                'is_unique'     => 'Nama Kelas '.$this->input->post('nama').' sudah ada'
+        ));    
 
 		if ($this->form_validation->run() == false) {
 			$data['prodi'] = $this->prodi_model->get_all();
