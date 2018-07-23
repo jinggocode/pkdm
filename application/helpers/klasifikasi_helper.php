@@ -5,13 +5,14 @@ if (!function_exists('cekNilai')) {
   { 
     $nilai = (int)$n; 
     if ($type == 0) {
-      if ($nilai >= 14 && $nilai <= 24) {
+      // Teori
+      if ($nilai >= 16 && $nilai <= 24) {
         return '0'; // kurang
       } else if ($nilai >= 25 && $nilai <= 35) {
         return '1'; // cukup
       } else if ($nilai >= 36 && $nilai <= 46) {
         return '2'; // baik
-      } else if ($nilai >= 47 && $nilai <= 56) {
+      } else if ($nilai >= 47 && $nilai <= 60) {
         return '3'; // sangat baik
       }
     } else { 

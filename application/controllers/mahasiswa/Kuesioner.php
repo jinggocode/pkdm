@@ -55,6 +55,12 @@ class Kuesioner extends MY_Controller
 		$mahasiswa = $this->mahasiswa_model
 				->where('id_user', $user->id)
 				->get(); 
+		$pengampu = $this->pengampu_model->get($this->input->post('id_pengampu'));
+		$makul = $this->makul_model->get($pengampu->id_makul);
+
+		dump($makul);
+
+		die();
 
 		$periode = $this->periode_model->where('status','1')->get();
 
@@ -102,6 +108,20 @@ class Kuesioner extends MY_Controller
 		  
 		$this->message('Kuesioner berhasil di Simpan', 'success');
 		$this->go('mahasiswa/homepage');
+	}
+
+	public function cek()
+	{ 
+		$nilai = 50; 
+		$makul = '0';
+		if ($makul == '0') { 
+			$data_nilai['klasifikasi'] = cekNilai($nilai, 0);
+		} else {
+			$data_nilai['klasifikasi'] = cekNilai($nilai, 1); 
+		}
+
+		echo $data_nilai['klasifikasi'];
+		echo "asd";
 	}
 
 	public function cek_semester($value='')

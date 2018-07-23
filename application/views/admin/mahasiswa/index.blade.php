@@ -17,6 +17,7 @@
       <div class="box">
       <div class="box-header with-border">
         <a href="{{site_url('admin/mahasiswa/add')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
+        <a href="{{site_url('admin/mahasiswa/import')}}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Import Data Excel</a>
       </div>
         <div class="box-body">
           <div class="row">

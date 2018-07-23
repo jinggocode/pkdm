@@ -1,8 +1,5 @@
 <?php
 
-/**
- *
- */
 class Mahasiswa extends MY_Controller
 {
 
@@ -10,7 +7,7 @@ class Mahasiswa extends MY_Controller
 	{
 		parent::__construct();
 		$this->_accessable = true;
-		$this->load->helper(array('dump', 'utility'));
+		$this->load->helper(array('dump', 'utility', 'excel'));
 		$this->root_view = "admin/";
 		$this->load->model('admin/mahasiswa_model');
 		$this->load->model('admin/prodi_model'); 
@@ -152,7 +149,7 @@ class Mahasiswa extends MY_Controller
 				echo "ada kesalahan";
 			} else {
 				$this->message('Data berhasi di Ubah!', 'success');
-				$this->go('admin/mahasiswa'); //redirect ke mahasiswa
+				$this->go('admin/mahasiswa');  
 			}
 		}
 	}
@@ -168,4 +165,64 @@ class Mahasiswa extends MY_Controller
 		$this->mahasiswa_model->delete($id);
 		$this->go('admin/mahasiswa');
 	}
+
+	public function import()
+	{
+		$this->generateCsrf();
+		$this->render('admin/mahasiswa/import');
+	}
+
+	public function import_action()
+	{
+		if (!empty($_FILES['file']['name'])) {
+			// melakukan proses upload
+			$file_name    = $this->upload_file();
+			$data['file'] = $file_name; 
+		}
+		// mengambil data didalam file excel, sehingga didapat data dalam bentuk Array
+		$excel_data = getArrayDataFromExcel($file_name); 
+ 
+		foreach ($excel_data as $value) {
+			$user_data['first_name'] = $value[4];
+			$user_data['username'] = $value[3];
+			$user_data['password'] = password_hash('default', PASSWORD_BCRYPT);
+			$user_data['group_id'] = '3';
+			$insert_user = $this->user_model->insert($user_data);
+
+			$dt_mahasiswa['id_user'] = $insert_user;
+			$dt_mahasiswa['id_prodi'] = $value[0];
+			$dt_mahasiswa['id_kelas'] = $value[1];
+			$dt_mahasiswa['id_angkatan'] = $value[2];
+			$dt_mahasiswa['nim'] = $value[3];
+			$dt_mahasiswa['nama'] = $value[4];
+			$insert = $this->mahasiswa_model->insert($dt_mahasiswa);
+		}
+
+		$this->message('Data berhasi di Import', 'success');
+		$this->go('admin/mahasiswa');  
+	}
+
+	function upload_file(){
+		$set_name   = fileName(1, 'XLS','',8);
+		$path       = $_FILES['file']['name'];
+		$extension  = ".".pathinfo($path, PATHINFO_EXTENSION);
+
+		$config['upload_path']          = './excel/file/';
+		$config['allowed_types']        = 'xls|xlsx';
+		$config['max_size']             = 9024;
+		$config['file_name']            = $set_name.$extension;
+		$this->load->library('upload', $config);
+		// proses upload
+		$upload = $this->upload->do_upload('file');
+
+		if ($upload == FALSE) {
+			$error = array('error' => $this->upload->display_errors());
+			dump($error); 
+		}
+
+		$upload = $this->upload->data();
+
+		return $upload['file_name'];
+	} 
+
 }
