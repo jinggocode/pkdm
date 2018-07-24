@@ -80,7 +80,7 @@
         height: 500,
         axes: {
           x: {
-            0: {side: 'top'}
+            0: {side: 'top', label: 'Jumlah Mahasiswa yang mengisi'}
           }
         },
         colors: ['green', 'blue', 'yellow', 'red']
