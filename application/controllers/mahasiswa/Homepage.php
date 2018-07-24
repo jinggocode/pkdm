@@ -43,6 +43,7 @@ class Homepage extends MY_Controller
 			->where('status_selesai', '1')
 			->count_rows(); 
 		if ($cek_status_pengisian != 0) {
+			$this->message('Kamu sudah melakukan pengisian kuesioner!','');
 			$this->go('auth/logout');
 		}
 
