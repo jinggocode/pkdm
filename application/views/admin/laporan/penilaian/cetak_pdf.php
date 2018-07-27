@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Laporan Produk</title>
+	<title>Laporan Penilaian Dosen</title>
 
 <style type="text/css">
 
@@ -55,13 +55,17 @@ table,th,td { border:1px solid black; border-collapse:collapse; } th,td { paddin
 	<tr align="center" style="font-size: 19px; font-weight: 900; ">
 		<td style="width: 5%">Peringkat</td>
 		<td style="width: 80%">Nama Dosen</td>
-		<td>Nilai</td> 
+		<td>Nilai Teori</td>
+		<td>Nilai Praktikum</td>
+        <td>Nilai Keseluruhan</td>
 	</tr>
 
 	<?php $no = 1; foreach($data as $value) {  ?>
 	<tr>
 		<td align="center"><?php echo $no++; ?></td>
 		<td><?php echo $value->nama; ?></td> 
+		<td align="center"><?php echo ceil($this->kuesioner_isi_model->getRatarata($value->id_dosen, $periode->id, '0')); ?></td>
+		<td align="center"><?php echo ceil($this->kuesioner_isi_model->getRatarata($value->id_dosen, $periode->id, '1')); ?></td>
         <td align="center"><?php echo ceil($value->nilai) ?></td> 
 	</tr>
 	<?php } ?>

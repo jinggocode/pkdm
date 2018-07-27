@@ -32,7 +32,9 @@
             <thead>
               <th style="width: 10%">Peringkat</th>
               <th>Nama Dosen</th>
-              <th>Nilai Rata - rata</th>
+              <th>Rata - rata Nilai Teori</th>
+              <th>Rata - rata Nilai Praktikum</th>
+              <th>Nilai Rata - rata Keseluruhan</th>
               <th>Aksi</th>
             </thead>
             <tbody>
@@ -46,6 +48,8 @@
                   <tr>
                     <td align="center">{{$no++}}.</td>
                     <td>{{$row->nama}}</td>
+                    <td>{{ ceil($this->kuesioner_isi_model->getRatarata($row->id_dosen, $periode->id, '0')); }}</td>
+                    <td>{{ ceil($this->kuesioner_isi_model->getRatarata($row->id_dosen, $periode->id, '1')); }}</td>
                     <td>
                       {{ceil($row->nilai)}} 
                     </td> 

@@ -16,16 +16,33 @@ class Kuesioner_isi_model extends MY_Model
 		parent::__construct();
 	} 
 	
-	public function getListPenilaian($id_pengampu, $id_periode)
+	public function getListPenilaian($id_dosen, $id_periode)
 	{
-		$query = $this->db->query('select 
-		jumlah_klasifikasi('.$id_pengampu.', '.$id_periode.', 0) as kurang, 
-		jumlah_klasifikasi('.$id_pengampu.', '.$id_periode.', 1) as cukup, 
-		jumlah_klasifikasi('.$id_pengampu.', '.$id_periode.', 2) as baik, 
-		jumlah_klasifikasi('.$id_pengampu.', '.$id_periode.', 3) as sangat_baik
-		from kuesioner_isi where id_pengampu = '.$id_pengampu.' and id_periode = '.$id_periode.'')->row();
+		$query = $this->db->query('select id_periode 
+		jumlah_klasifikasi('.$id_dosen.', '.$id_periode.', 0) as kurang, 
+		jumlah_klasifikasi('.$id_dosen.', '.$id_periode.', 1) as cukup, 
+		jumlah_klasifikasi('.$id_dosen.', '.$id_periode.', 2) as baik, 
+		jumlah_klasifikasi('.$id_dosen.', '.$id_periode.', 3) as sangat_baik
+		from kuesioner_isi where id_pengampu = '.$id_dosen.' and id_periode = '.$id_periode.' group by id_periode')->row();
 		
 		return $query;
+	}
+	
+	public function getJumlahKlasifikasi($id_dosen, $id_periode, $klasifikasi)
+	{
+		$query = $this->db->query("select count(*) as total from kuesioner_isi WHERE id_dosen = $id_dosen and id_periode = $id_periode and klasifikasi ='$klasifikasi'")->row();
+		
+		return $query->total;
+	}
+	
+	public function getRatarata($id_dosen, $id_periode, $jenis)
+	{
+		$query = $this->db->query("select avg(total_nilai) as rata_rata from kuesioner_isi
+		join pengampu_makul ON pengampu_makul.id = kuesioner_isi.id_pengampu
+		join matakuliah ON matakuliah.id = pengampu_makul.id_makul
+		WHERE (kuesioner_isi.id_dosen = $id_dosen and kuesioner_isi.id_periode = $id_periode) and matakuliah.jenis = '$jenis'")->row();
+		
+		return $query->rata_rata;
 	}
 	public function getListNilaiTotalDosen($id_prodi, $id_periode)
 	{

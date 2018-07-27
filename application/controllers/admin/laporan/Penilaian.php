@@ -60,17 +60,25 @@ class Penilaian extends MY_Controller
 		$id_dosen = $this->uri->segment(6);  
 		$data['dosen'] = $this->dosen_model->get($id_dosen);
 
+		// 1. 
+
 		$data['makul'] = $this->kuesioner_isi_model
 			->with_periode()
 			->with_mahasiswa(array('with' => array(
 				array('relation'=>'kelas'), 
 				array('relation'=>'angkatan')
 				))) 
-			->with_pengampu(array('with' => array('relation' => 'makul')))
-			->where('id_periode', $id_periode)
+			->with_pengampu(array('with' => array('relation' => 'makul'))) 
 			->where('id_dosen', $id_dosen)
-			->group_by('id_pengampu')
+			->group_by('id_pengampu') 
 			->get_all(); 
+
+		$periode = $this->kuesioner_isi_model
+			->with_periode() 
+			->where('id_dosen', $id_dosen)
+			->group_by('id_periode') 
+			->get_all(); 	
+			// dump($periode);
 			
 		$data['periode'] = $this->kuesioner_isi_model
 			->fields('id')
@@ -79,16 +87,17 @@ class Penilaian extends MY_Controller
 			->get(); 
   
 		if ($this->uri->segment(7) == 'get_list') {
-			foreach ($data['makul'] as $value) {
-				$list = $this->kuesioner_isi_model->getListPenilaian($value->id_pengampu, $value->id_periode);
+			// periode dibuat perulangan 
+			foreach ($periode as $value) { 
 				$dt[] = array(
-					'judul' => 'ANGKATAN '.$value->mahasiswa->angkatan->nama.' - KELAS '.$value->mahasiswa->kelas->nama.' || '.($value->pengampu->makul->jenis == '0'?'TEORI ':'PRAKIKUM ').$value->pengampu->makul->nama, 
-					'kurang' => $list->kurang, 
-					'cukup' => $list->cukup, 
-					'baik' => $list->baik, 
-					'sangat_baik' => $list->sangat_baik, 
-				); 
-			} 
+					// 2019 SM 1
+					'semester' => $value->periode->tahun.' SM '.$value->periode->semester, 
+					'kurang' => (int)$this->kuesioner_isi_model->getJumlahKlasifikasi($id_dosen, $value->id_periode, '0'), 
+					'cukup' => (int)$this->kuesioner_isi_model->getJumlahKlasifikasi($id_dosen, $value->id_periode, '1'),  
+					'baik' => (int)$this->kuesioner_isi_model->getJumlahKlasifikasi($id_dosen, $value->id_periode, '2'), 
+					'sangat_baik' => (int)$this->kuesioner_isi_model->getJumlahKlasifikasi($id_dosen, $value->id_periode, '3'),  
+				);  
+			}    
 			echo json_encode($dt, true);
 		} else { 
 			$this->render('admin/laporan/penilaian/detail', $data);

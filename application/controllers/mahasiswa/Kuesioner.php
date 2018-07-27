@@ -57,11 +57,7 @@ class Kuesioner extends MY_Controller
 				->get(); 
 		$pengampu = $this->pengampu_model->get($this->input->post('id_pengampu'));
 		$makul = $this->makul_model->get($pengampu->id_makul);
-
-		dump($makul);
-
-		die();
-
+  
 		$periode = $this->periode_model->where('status','1')->get();
 
 		// dari inputan

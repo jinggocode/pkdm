@@ -6,23 +6,23 @@ if (!function_exists('cekNilai')) {
     $nilai = (int)$n; 
     if ($type == 0) {
       // Teori
-      if ($nilai >= 16 && $nilai <= 24) {
+      if ($nilai >= 16 && $nilai <= 26) {
         return '0'; // kurang
-      } else if ($nilai >= 25 && $nilai <= 35) {
+      } else if ($nilai >= 27 && $nilai <= 37) {
         return '1'; // cukup
-      } else if ($nilai >= 36 && $nilai <= 46) {
+      } else if ($nilai >= 38 && $nilai <= 48) {
         return '2'; // baik
-      } else if ($nilai >= 47 && $nilai <= 60) {
+      } else if ($nilai >= 49 && $nilai <= 60) {
         return '3'; // sangat baik
       }
     } else { 
-      if ($nilai >= 18 && $nilai <= 31) {
+      if ($nilai >= 20 && $nilai <= 33) {
         return '0';
-      } else if ($nilai >= 32 && $nilai <= 45) {
+      } else if ($nilai >= 34 && $nilai <= 47) {
         return '1';
-      } else if ($nilai >= 46 && $nilai <= 59) {
+      } else if ($nilai >= 48 && $nilai <= 61) {
         return '2';
-      } else if ($nilai >= 60 && $nilai <= 72) {
+      } else if ($nilai >= 62 && $nilai <= 75) {
         return '3';
       }
     }
