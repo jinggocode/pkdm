@@ -18,7 +18,7 @@ class Kuesioner_isi_model extends MY_Model
 	
 	public function getListPenilaian($id_dosen, $id_periode)
 	{
-		$query = $this->db->query('select id_periode 
+		$query = $this->db->query('select
 		jumlah_klasifikasi('.$id_dosen.', '.$id_periode.', 0) as kurang, 
 		jumlah_klasifikasi('.$id_dosen.', '.$id_periode.', 1) as cukup, 
 		jumlah_klasifikasi('.$id_dosen.', '.$id_periode.', 2) as baik, 

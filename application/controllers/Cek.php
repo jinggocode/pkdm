@@ -10,16 +10,25 @@ class Cek extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->_accessable = true;
+        $this->_accessable = true; 
         $this->load->helper(array('dump'));
         $this->load->model(array('admin/mahasiswa_model', 'admin/kuesioner_isi_model', 'admin/periode_model', 'admin/prodi_model', 'admin/kelas_model', 'admin/angkatan_model'));
     }
 
     public function index()
     { 
+        // 8a5da52ed126447d359e70c05721a8aa
+        $api_key = $this->input->get('api_key');
         $nim = $this->input->get('nim');
         $semester = $this->input->get('semester');
         $tahun = $this->input->get('tahun');
+        
+        if ($api_key != md5('api')) { 
+            $response['status'] = NULL;
+            $response['pesan'] = 'Anda tidak memiliki akses';
+            echo json_encode($response);
+            die();
+        } 
 
         // MELIHAT DATA MAHASISWA
         $mahasiswa = $this->mahasiswa_model
