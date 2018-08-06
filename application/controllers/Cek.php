@@ -2,7 +2,7 @@
  
 // METHOD GET
 // contoh pemanggilan 
-// http://localhost/pkdm/cek?tahun=2018&semester=1&nim=361555401033
+// http://localhost/pkdm/cek?api_key=8a5da52ed126447d359e70c05721a8aa&tahun=2018&semester=1&nim=361555401033
 
 class Cek extends MY_Controller
 {

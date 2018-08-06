@@ -14,7 +14,7 @@ class Makul extends MY_Controller
 		$this->root_view = "admin/";
 		$this->load->model('admin/prodi_model');
 		$this->load->model('admin/makul_model');
-	}
+	} 	
 
 	public function index()
 	{
@@ -161,10 +161,10 @@ class Makul extends MY_Controller
 		}
 		// mengambil data didalam file excel, sehingga didapat data dalam bentuk Array
 		$excel_data = getArrayDataFromExcel($file_name); 
- 
+		 
 		foreach ($excel_data as $value) {   
 			$data['id_prodi'] = $value[0];
-			$data['jenis'] = $value[1];
+			$data['jenis'] = (string)$value[1];
 			$data['nama'] = $value[2];
 			$data['semester'] = $value[3];
 			$insert = $this->makul_model->insert($data);

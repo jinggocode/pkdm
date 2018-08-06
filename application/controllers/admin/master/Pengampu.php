@@ -10,7 +10,7 @@ class Pengampu extends MY_Controller
 	{
 		parent::__construct();
 		$this->_accessable = TRUE;
-		$this->load->helper(array('dump','utility'));
+		$this->load->helper(array('dump', 'utility', 'excel'));
 		$this->root_view = "admin/";
 		$this->load->model('admin/pengampu_model');
 		$this->load->model('admin/kelas_model');
@@ -250,5 +250,56 @@ class Pengampu extends MY_Controller
 			die();
 		}
 	}
+
+	public function import()
+	{
+		$this->generateCsrf();
+		$this->render('admin/master/pengampu/import');
+	}
+
+	public function import_action()
+	{
+		if (!empty($_FILES['file']['name'])) {
+			// melakukan proses upload
+			$file_name    = $this->upload_file();
+			$data['file'] = $file_name; 
+		}
+		// mengambil data didalam file excel, sehingga didapat data dalam bentuk Array
+		$excel_data = getArrayDataFromExcel($file_name); 
+		 
+		foreach ($excel_data as $value) {   
+			$data['id_prodi'] = $value[0];
+			$data['id_kelas'] = $value[1];
+			$data['id_makul'] = $value[2];
+			$data['id_dosen'] = $value[3];
+			$insert = $this->pengampu_model->insert($data);
+		}
+
+		$this->message('Data berhasi di Import', 'success');
+		$this->go('admin/master/pengampu');  
+	}
+
+	function upload_file(){
+		$set_name   = fileName(1, 'XLS','',8);
+		$path       = $_FILES['file']['name'];
+		$extension  = ".".pathinfo($path, PATHINFO_EXTENSION);
+
+		$config['upload_path']          = './excel/file/';
+		$config['allowed_types']        = 'xls|xlsx';
+		$config['max_size']             = 9024;
+		$config['file_name']            = $set_name.$extension;
+		$this->load->library('upload', $config);
+		// proses upload
+		$upload = $this->upload->do_upload('file');
+
+		if ($upload == FALSE) {
+			$error = array('error' => $this->upload->display_errors());
+			dump($error); 
+		}
+
+		$upload = $this->upload->data();
+
+		return $upload['file_name'];
+	} 
 
 }
