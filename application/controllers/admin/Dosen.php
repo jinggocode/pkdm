@@ -183,7 +183,7 @@ class Dosen extends MY_Controller
 			$user_data['first_name'] = $value[2];
 			$user_data['username'] = $value[1];
 			$user_data['password'] = password_hash('default', PASSWORD_BCRYPT);
-			$user_data['group_id'] = '3';
+			$user_data['group_id'] = '2';
 			$insert_user = $this->user_model->insert($user_data);
 
 			$dt_dosen['id_user'] = $insert_user; 
