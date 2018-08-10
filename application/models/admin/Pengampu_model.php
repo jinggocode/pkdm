@@ -20,6 +20,7 @@ class Pengampu_model extends MY_Model
 
 	public function getData($id_kelas, $semester, $id_prodi)
 	{
+		// dump($semester);
 		$this->db->select('pengampu_makul.id as id_pengampu, matakuliah.nama, dosen.nama as nama_dosen, dosen.id as id_dosen, matakuliah.nama as nama_makul, matakuliah.jenis as jenis_makul');
 		$this->db->from('pengampu_makul');
 		$this->db->join('matakuliah', 'matakuliah.id = pengampu_makul.id_makul');

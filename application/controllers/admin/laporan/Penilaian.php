@@ -51,51 +51,26 @@ class Penilaian extends MY_Controller
 		$data['periode'] = $this->periode_model->get($id_periode);
 		
 		$data['data'] = $this->kuesioner_isi_model->getListNilaiTotalDosen($id_prodi, $id_periode);
+
+		// dump($data['data'] );
  
 		$this->render('admin/laporan/penilaian/statistik', $data);
 	}
 
-	public function detail($id_periode)
-	{
-		$id_dosen = $this->uri->segment(6);  
+	public function detail($id_dosen)
+	{ 
 		$data['dosen'] = $this->dosen_model->get($id_dosen);
-
-		// 1. 
-
-		$data['makul'] = $this->kuesioner_isi_model
-			->with_periode()
-			->with_mahasiswa(array('with' => array(
-				array('relation'=>'kelas'), 
-				array('relation'=>'angkatan')
-				))) 
-			->with_pengampu(array('with' => array('relation' => 'makul'))) 
-			->where('id_dosen', $id_dosen)
-			->group_by('id_pengampu') 
-			->get_all(); 
-
-		$periode = $this->kuesioner_isi_model
-			->with_periode() 
-			->where('id_dosen', $id_dosen)
-			->group_by('id_periode') 
-			->get_all(); 	
-			// dump($periode);
-			
-		$data['periode'] = $this->kuesioner_isi_model
-			->fields('id')
-			->with_periode()
-			->where('id_periode', $id_periode)
-			->get(); 
   
-		if ($this->uri->segment(7) == 'get_list') {
+		$data_grafik = $this->kuesioner_isi_model->getListNilaiTotalDosenGrafik($id_dosen);
+			 
+		if ($this->uri->segment(6) == 'get_list') {
 			// periode dibuat perulangan 
-			foreach ($periode as $value) { 
+			foreach ($data_grafik as $value) { 
+				$semester = ($value->semester == 1)?'Ganjil':'Genap';
 				$dt[] = array(
 					// 2019 SM 1
-					'semester' => $value->periode->tahun.' SM '.$value->periode->semester, 
-					'kurang' => (int)$this->kuesioner_isi_model->getJumlahKlasifikasi($id_dosen, $value->id_periode, '0'), 
-					'cukup' => (int)$this->kuesioner_isi_model->getJumlahKlasifikasi($id_dosen, $value->id_periode, '1'),  
-					'baik' => (int)$this->kuesioner_isi_model->getJumlahKlasifikasi($id_dosen, $value->id_periode, '2'), 
-					'sangat_baik' => (int)$this->kuesioner_isi_model->getJumlahKlasifikasi($id_dosen, $value->id_periode, '3'),  
+					'semester' => $value->tahun.' - '.$semester,  
+					'nilai' => ceil($value->nilai),  
 				);  
 			}    
 			echo json_encode($dt, true);

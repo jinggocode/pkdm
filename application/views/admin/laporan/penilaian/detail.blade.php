@@ -6,7 +6,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Hasil Penilaian Dosen {{ $dosen->nama }}
+    Hasil Penilaian Dosen {{ $dosen->nama }} per Tahun
   </h1>
 </section>
 
@@ -17,7 +17,7 @@
   <div class="box">
     <div class="box-header with-border">
       
-      <center><a href="{{site_url('admin/laporan/penilaian/statistik/'.$periode->periode->id.'/'.$dosen->id_prodi)}}" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a></center> 
+      <center><a onclick="window.history.back();" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a></center> 
  
     </div>
     <div class="box-body">  
@@ -51,20 +51,17 @@
  
     $.ajax({
       type: 'POST', 
-      url: '<?php echo site_url('admin/laporan/penilaian/detail/'.$periode->id_periode.'/'.$dosen->id.'/get_list'); ?>', 
+      url: '<?php echo site_url('admin/laporan/penilaian/detail/'.$dosen->id.'/get_list'); ?>', 
        
       success: function (data1) { 
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Semester');
-        data.addColumn('number', 'Sangat Baik');
-        data.addColumn('number', 'Baik');
-        data.addColumn('number', 'Cukup');
-        data.addColumn('number', 'Kurang');
+        data.addColumn('number', 'Nilai rata - rata'); 
 
         var jsonData = $.parseJSON(data1);
 
         for (var i = 0; i < jsonData.length; i++) {
-                data.addRow([jsonData[i].semester, parseInt(jsonData[i].sangat_baik), parseInt(jsonData[i].baik), parseInt(jsonData[i].cukup), parseInt(jsonData[i].kurang)]);
+                data.addRow([jsonData[i].semester, parseInt(jsonData[i].nilai)]);
         }
 
         var options = {

@@ -10,13 +10,13 @@ class Homepage extends MY_Controller
 	{
 		parent::__construct();
 		$this->_accessable = TRUE;
-		$this->load->helper(array('dump'));
+		$this->load->helper(array('dump', 'cek_semester'));
 		$this->load->model(array(''));
 	}
 
 	public function index()
 	{
-		// 
+		// cek_semester()
 		$this->render('admin/home');
 	}
 

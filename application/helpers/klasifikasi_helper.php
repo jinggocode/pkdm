@@ -22,7 +22,7 @@ if (!function_exists('cekNilai')) {
         return '1';
       } else if ($nilai >= 48 && $nilai <= 61) {
         return '2';
-      } else if ($nilai >= 62 && $nilai <= 75) {
+      } else if ($nilai >= 62 && $nilai <= 76) {
         return '3';
       }
     }

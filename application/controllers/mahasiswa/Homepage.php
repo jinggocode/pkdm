@@ -49,6 +49,7 @@ class Homepage extends MY_Controller
 
 		$tahun_semester = $periode->tahun . $periode->semester;
 		$semester = cek_semester($tahun_semester, $mahasiswa->angkatan->nama);
+		// dump($periode->tahun);
 
 		// cek sudah di isi semua apa belum kuesionernya
 		$data['cek_isi'] = $this->pengampu_model->cek_isi($mahasiswa->id, $semester, $mahasiswa->id_kelas, $periode->id);

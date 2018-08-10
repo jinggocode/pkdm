@@ -53,4 +53,14 @@ class Kuesioner_isi_model extends MY_Model
 		
 		return $query;
 	}
+	public function getListNilaiTotalDosenGrafik($id_dosen)
+	{
+		$query = $this->db->query('select kuesioner_isi.id, id_dosen, periode.tahun, periode.semester, dosen.nama, AVG(total_nilai) as nilai, id_prodi from kuesioner_isi
+		join dosen on kuesioner_isi.id_dosen = dosen.id
+		join periode on kuesioner_isi.id_periode = periode.id
+		where id_dosen = '.$id_dosen.'
+		group by id_periode order by nilai DESC')->result();
+		
+		return $query;
+	}
 }
