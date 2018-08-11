@@ -62,6 +62,7 @@ class Penilaian extends MY_Controller
 		$data['dosen'] = $this->dosen_model->get($id_dosen);
   
 		$data_grafik = $this->kuesioner_isi_model->getListNilaiTotalDosenGrafik($id_dosen);
+		// dump($data_grafik);
 			 
 		if ($this->uri->segment(6) == 'get_list') {
 			// periode dibuat perulangan 

@@ -38,9 +38,9 @@
                   @foreach($data as $row)
                   <tr>
                     <td>{{$start++}}.</td>
-                    <td>SEMESTER {{$row->makul->semester}} - {{($row->makul->jenis == 0?'TEORI':'PRAKTIKUM')}} {{$row->makul->nama}}</td>
-                    <td>{{$row->prodi->nama}} - {{$row->kelas->nama}}</td>
-                    <td>{{$row->dosen->nama}}</td>
+                    <td class="up">SEMESTER {{$row->makul->semester}} - {{($row->makul->jenis == 0?'TEORI':'PRAKTIKUM')}} {{$row->makul->nama}}</td>
+                    <td class="up">{{$row->prodi->nama}} - {{$row->kelas->nama}}</td>
+                    <td class="up">{{$row->dosen->nama}}</td>
                     <td>
                       <a href="{{site_url('admin/master/pengampu/edit/'.$row->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a>
                       <a href="{{site_url('admin/master/pengampu/delete/'.$row->id)}}" onclick="return confirm('apakah anda yakin?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</a>

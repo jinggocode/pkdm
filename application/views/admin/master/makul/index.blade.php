@@ -2,6 +2,8 @@
 
 @section('title')Data Mata Kuliah @endsection
 
+
+
 @section('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -37,8 +39,8 @@
                 @foreach($data as $row)
                 <tr>
                   <td>{{$start++}}.</td>
-                  <td>{{($row->jenis=='0')?'TEORI':'PRAKTIKUM'}} / {{$row->nama}}</td>
-                  <td>{{$row->prodi->nama}}</td>
+                  <td class="up">{{($row->jenis=='0')?'TEORI':'PRAKTIKUM'}} {{$row->nama}}</td>
+                  <td class="up">{{$row->prodi->nama}}</td>
                   <td>{{$row->semester}}</td>
                   <td>
                     <a href="{{site_url('admin/master/makul/edit/'.$row->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a>

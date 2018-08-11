@@ -13,11 +13,11 @@
       <table class="table table-striped" style="width: 40%">
         <tr>
           <td>Nama Mata Kuliah</td>
-          <td><b>{{($data->makul->jenis == '0')?'TEORI':'PRAKIKUM'}} {{$data->makul->nama}}</b></td>
+          <td class="up"><b>{{($data->makul->jenis == '0')?'TEORI':'PRAKIKUM'}} {{$data->makul->nama}}</b></td>
         </tr>
         <tr>
           <td>Nama Dosen</td>
-          <td><b>{{$data->dosen->nama}}</b></td>
+          <td class="up"><b>{{$data->dosen->nama}}</b></td>
         </tr>
         <tr>
           <td>Semester</td>

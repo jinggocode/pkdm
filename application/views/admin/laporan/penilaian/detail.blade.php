@@ -67,7 +67,7 @@
         var options = {
           chart: {
             title: '{{ $dosen->nama }}',
-            subtitle: 'Grafik per Semester'
+            subtitle: 'Grafik per Tahun'
           },
           width: 900,
           height: 500,

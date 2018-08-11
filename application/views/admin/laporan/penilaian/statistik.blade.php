@@ -54,7 +54,7 @@
                       {{ceil($row->nilai)}} 
                     </td> 
                     <td> 
-                        <a href="{{site_url('admin/laporan/penilaian/detail/'.$periode->id.'/'.$row->id_dosen)}}" class="btn btn-success"><i class="fa fa-eye"></i> Detail</a>
+                        <a href="{{site_url('admin/laporan/penilaian/detail/'.$row->id_dosen)}}" class="btn btn-success"><i class="fa fa-eye"></i> Detail</a>
                     </td>
                   </tr>
                 @endforeach

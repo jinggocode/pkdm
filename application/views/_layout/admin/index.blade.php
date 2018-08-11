@@ -35,6 +35,8 @@ if ($user->group_id == 2){
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{base_url()}}assets/admin/dist/css/skins/skin-blue.min.css">
 
+  <link rel="stylesheet" href="{{base_url()}}assets/css/style.css">
+
   <!-- CSS Tambahan -->
   @yield('style')
 
