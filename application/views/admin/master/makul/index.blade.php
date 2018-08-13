@@ -39,7 +39,7 @@
                 @foreach($data as $row)
                 <tr>
                   <td>{{$start++}}.</td>
-                  <td class="up">{{($row->jenis=='0')?'TEORI':'PRAKTIKUM'}} {{$row->nama}}</td>
+                  <td class="up">{{($row->jenis=='0')?'':'PRAKTIKUM'}} {{$row->nama}}</td>
                   <td class="up">{{$row->prodi->nama}}</td>
                   <td>{{$row->semester}}</td>
                   <td>

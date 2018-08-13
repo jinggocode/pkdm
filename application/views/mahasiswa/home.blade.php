@@ -57,7 +57,7 @@
             <?php $kuesioner_isi = $this->kuesioner_isi_model->where('id_pengampu', $row->id_pengampu)->where('id_mahasiswa', $id_mahasiswa)->count_rows();?>
 
             <tr>
-              <td class="up">{{($row->jenis_makul == '0')?'TEORI':'PRAKIKUM'}} {{$row->nama_makul}} - {{$row->nama_dosen}}</td>
+              <td class="up">{{($row->jenis_makul == '0')?'':'PRAKIKUM'}} {{$row->nama_makul}} - {{$row->nama_dosen}}</td>
               <td>
                 @if ($kuesioner_isi == '0')
                   <a href="{{site_url('mahasiswa/kuesioner/isi/'.$row->id_pengampu)}}" class="btn btn-info"><i class="fa fa-send"></i> Isi</a>

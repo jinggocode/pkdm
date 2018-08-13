@@ -179,16 +179,19 @@ class Dosen extends MY_Controller
 		// mengambil data didalam file excel, sehingga didapat data dalam bentuk Array
 		$excel_data = getArrayDataFromExcel($file_name); 
  
+ 
 		foreach ($excel_data as $value) {
+			$nik  = explode(".", $value[1]);
+
 			$user_data['first_name'] = $value[2];
-			$user_data['username'] = $value[1];
+			$user_data['username'] = $nik[0];
 			$user_data['password'] = password_hash('default', PASSWORD_BCRYPT);
 			$user_data['group_id'] = '2';
 			$insert_user = $this->user_model->insert($user_data);
 
 			$dt_dosen['id_user'] = $insert_user; 
 			$dt_dosen['id_prodi'] = $value[0];
-			$dt_dosen['nik'] = $value[1];
+			$dt_dosen['nik'] = $nik[0];
 			$dt_dosen['nama'] = $value[2];
 			$insert = $this->dosen_model->insert($dt_dosen);
 		}
